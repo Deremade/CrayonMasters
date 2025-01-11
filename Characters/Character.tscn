@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgp7v5wavpurg"]
+
+[ext_resource type="Texture2D" uid="uid://s7caqo2ckcrj" path="res://Characters/icon.svg" id="1_ikga5"]
+[ext_resource type="Script" path="res://Notebook/MapItem.gd" id="2_6bs5p"]
+
+[node name="Icon" type="Sprite2D"]
+position = Vector2(34, 32)
+scale = Vector2(0.472656, 0.445313)
+texture = ExtResource("1_ikga5")
+script = ExtResource("2_6bs5p")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
