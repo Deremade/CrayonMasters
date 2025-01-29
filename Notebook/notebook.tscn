@@ -74,11 +74,16 @@ script = ExtResource("6_drquv")
 [node name="Icon" parent="." instance=ExtResource("7_bcldc")]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(31, 31)
+char_name = "Bob"
+start_pos = Vector2i(1, 1)
 
 [node name="Icon2" parent="." instance=ExtResource("7_bcldc")]
 modulate = Color(0, 1, 0, 1)
 position = Vector2(103, 33)
+char_name = "Jack"
+start_pos = Vector2i(8, 3)
 
+[connection signal="select_map_item" from="Paper" to="." method="_on_paper_select_map_item"]
 [connection signal="select_tile" from="Paper" to="Icon" method="_on_paper_select_tile"]
 [connection signal="select_tile" from="Paper" to="Icon2" method="_on_paper_select_tile"]
 [connection signal="end_turn" from="Icon" to="." method="_on_icon_end_turn"]

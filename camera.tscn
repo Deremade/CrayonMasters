@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7f6id3dv8sl1"]
+
+[ext_resource type="PackedScene" uid="uid://ci4p06lu8tqqi" path="res://Notebook/notebook.tscn" id="1_8wqmy"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="2_y1hjf"]
+[ext_resource type="Script" path="res://NoteCard/NoteCard.gd" id="3_0bail"]
+[ext_resource type="Texture2D" uid="uid://c18xofugrp4e8" path="res://Notebook/linedPaper.png" id="3_0fufb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Notebook" parent="." instance=ExtResource("1_8wqmy")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("2_y1hjf")
+
+[node name="NoteCard" type="Container" parent="Camera2D"]
+offset_left = 835.0
+offset_top = 451.0
+offset_right = 1155.0
+offset_bottom = 641.0
+script = ExtResource("3_0bail")
+
+[node name="LinedPaper" type="Sprite2D" parent="Camera2D/NoteCard"]
+modulate = Color(1, 0.576471, 1, 1)
+position = Vector2(158, 96)
+texture = ExtResource("3_0fufb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/NoteCard"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+text = "Character"
+scroll_active = false
+
+[connection signal="change_turn" from="Notebook" to="Camera2D" method="_on_notebook_change_turn"]
+[connection signal="select_map_item" from="Notebook" to="Camera2D/NoteCard" method="_on_notebook_select_map_item"]
+[connection signal="toggle_movement" from="Camera2D/NoteCard" to="Notebook" method="_on_note_card_toggle_movement"]

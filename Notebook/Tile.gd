@@ -7,3 +7,6 @@ func _init(atlas):
 		cost= INF
 	if(atlas == 1):
 		cost = 2
+
+func is_visible():
+	return cost != INF

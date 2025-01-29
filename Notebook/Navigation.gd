@@ -64,6 +64,3 @@ func find_path(sources: Array, target: Vector2i) -> Array:
 		path.push_front(current)
 		current = sources[current.x][current.y]
 	return path
-
-func pos_visible_from(pos : Vector2i, from : Vector2i):
-	pass
