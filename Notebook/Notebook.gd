@@ -10,14 +10,12 @@ func _ready():
 	turns[0].is_turn = true
 	change_turn.emit(0)
 
-func _on_icon_end_turn():
+func _on_icon_change_turn(is_turn):
+	if is_turn:
+		return
 	cur_turn = (cur_turn + 1)  % len(turns)
 	turns[cur_turn].is_turn = true
 	change_turn.emit(cur_turn)
-
-
-func _on_note_card_toggle_movement(toggle):
-	turns[cur_turn].is_moving = toggle
 
 
 func _on_paper_select_map_item(item):

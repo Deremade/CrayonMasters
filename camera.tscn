@@ -31,6 +31,11 @@ layout_mode = 2
 text = "Character"
 scroll_active = false
 
+[node name="Button" type="Button" parent="Camera2D/NoteCard"]
+visible = false
+layout_mode = 2
+text = "End Turn"
+
 [connection signal="change_turn" from="Notebook" to="Camera2D" method="_on_notebook_change_turn"]
 [connection signal="select_map_item" from="Notebook" to="Camera2D/NoteCard" method="_on_notebook_select_map_item"]
-[connection signal="toggle_movement" from="Camera2D/NoteCard" to="Notebook" method="_on_note_card_toggle_movement"]
+[connection signal="pressed" from="Camera2D/NoteCard/Button" to="Camera2D/NoteCard" method="_on_button_pressed"]

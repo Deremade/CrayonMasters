@@ -5,12 +5,13 @@ var cur_path : Array
 var moves = 50
 var is_turn : bool = false : set = set_turn
 var is_moving : bool = false
-signal end_turn
+signal change_turn
 @export var char_name : String
 @export var start_pos : Vector2i
 
 func _ready():
 	grid_pos = start_pos
+	$RichTextLabel.text = char_name
 
 func continue_path():
 	if(moves > 0 && cur_path != []):
@@ -19,7 +20,6 @@ func continue_path():
 		moves -= 1
 	else:
 		$Timer.stop()
-		is_turn = false
 
 func start_movement():
 	$Timer.start()
@@ -40,12 +40,11 @@ func _on_timer_timeout():
 	continue_path()
 
 func set_turn(turn):
-	print(char_name, "'s turn")
 	if(turn):
 		moves = 5
+	else :
 		if(cur_path != []):
 			start_movement()
-	else :
 		is_moving = false
-		end_turn.emit()
+	change_turn.emit(turn)
 	is_turn = turn
