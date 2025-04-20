@@ -1,19 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgp7v5wavpurg"]
+[gd_scene load_steps=5 format=3 uid="uid://bgp7v5wavpurg"]
 
 [ext_resource type="Texture2D" uid="uid://s7caqo2ckcrj" path="res://Characters/icon.svg" id="1_ikga5"]
-[ext_resource type="Script" path="res://Notebook/MapItem.gd" id="2_6bs5p"]
+[ext_resource type="Script" path="res://Characters/Character.gd" id="2_47b8u"]
 [ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="3_har8s"]
+[ext_resource type="Texture2D" uid="uid://dr2hrvbgjh7sd" path="res://Characters/TargetCircle.png" id="4_6vhsm"]
 
 [node name="Character" type="Sprite2D"]
 position = Vector2(34, 32)
 scale = Vector2(0.472656, 0.445313)
 texture = ExtResource("1_ikga5")
-script = ExtResource("2_6bs5p")
+script = ExtResource("2_47b8u")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
 clip_contents = false
 offset_left = -61.3554
 offset_top = 62.8771
@@ -22,5 +24,11 @@ offset_bottom = 102.877
 theme_override_fonts/normal_font = ExtResource("3_har8s")
 theme_override_font_sizes/normal_font_size = 29
 text = "Character"
+
+[node name="TargetCircle" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("4_6vhsm")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
