@@ -1,0 +1,349 @@
+[gd_scene load_steps=3 format=3 uid="uid://djmi8it6ia2ku"]
+
+[ext_resource type="Script" path="res://Options.gd" id="1_5hit8"]
+[ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="2_q1d64"]
+
+[node name="OptionsMenu" type="Node2D"]
+position = Vector2(1, -128)
+script = ExtResource("1_5hit8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 128.0
+metadata/_edit_use_anchors_ = true
+
+[node name="General" type="Control" parent="ColorRect"]
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 127.0
+
+[node name="QuitButton" type="Button" parent="ColorRect/General"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_q1d64")
+text = "Quit Game"
+flat = true
+
+[node name="ReportBug" type="Button" parent="ColorRect/General"]
+offset_left = 1.0
+offset_top = 23.0
+offset_right = 54.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_q1d64")
+text = "Report Bug"
+flat = true
+
+[node name="Audio" type="Control" parent="ColorRect"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 127.0
+
+[node name="MainAudioLabel" type="RichTextLabel" parent="ColorRect/Audio"]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 23.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+theme_override_font_sizes/normal_font_size = 20
+text = "Main Audio"
+
+[node name="HSlider" type="HSlider" parent="ColorRect/Audio"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 3.0
+offset_right = 208.0
+offset_bottom = 19.0
+
+[node name="MusicLabel" type="RichTextLabel" parent="ColorRect/Audio"]
+offset_left = 1.0
+offset_top = 20.0
+offset_right = 86.0
+offset_bottom = 43.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+theme_override_font_sizes/normal_font_size = 20
+text = "Music
+"
+
+[node name="HSlider2" type="HSlider" parent="ColorRect/Audio"]
+offset_left = 87.0
+offset_top = 23.0
+offset_right = 209.0
+offset_bottom = 39.0
+
+[node name="SFXLabel" type="RichTextLabel" parent="ColorRect/Audio"]
+offset_left = 2.0
+offset_top = 41.0
+offset_right = 87.0
+offset_bottom = 64.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+theme_override_font_sizes/normal_font_size = 20
+text = "SFX"
+
+[node name="HSlider3" type="HSlider" parent="ColorRect/Audio"]
+offset_left = 88.0
+offset_top = 44.0
+offset_right = 210.0
+offset_bottom = 60.0
+
+[node name="Graphics" type="Control" parent="ColorRect"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 127.0
+
+[node name="OptionButton" type="OptionButton" parent="ColorRect/Graphics"]
+layout_mode = 0
+offset_right = 139.0
+offset_bottom = 31.0
+item_count = 3
+popup/item_0/text = "Default"
+popup/item_0/id = 0
+popup/item_1/text = "Choice1"
+popup/item_1/id = 1
+popup/item_2/text = "Unlockable1"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_top = 128.0
+offset_right = 64.0
+offset_bottom = 160.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect2"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 21.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+text = "General"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 128.0
+offset_bottom = 160.0
+color = Color(1, 0.137255, 0.113725, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect3"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 18.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+text = "Audio"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 127.0
+offset_top = 128.0
+offset_right = 191.0
+offset_bottom = 160.0
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect4"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 23.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+text = "Graphics"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 190.0
+offset_top = 128.0
+offset_right = 254.0
+offset_bottom = 160.0
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect5"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 19.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+text = "TBD"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+offset_left = 254.0
+offset_top = 128.0
+offset_right = 318.0
+offset_bottom = 160.0
+color = Color(1, 0.333333, 0.301961, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect6"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 20.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+text = "TBD
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="BugReport" type="ColorRect" parent="."]
+visible = false
+offset_left = 446.0
+offset_top = 185.0
+offset_right = 766.0
+offset_bottom = 569.0
+color = Color(0.905882, 0.854902, 0.894118, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DrawnTitle" type="RichTextLabel" parent="BugReport"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046875
+anchor_top = 0.00520833
+anchor_right = 0.059375
+anchor_bottom = 0.0182292
+offset_right = 60.0
+offset_bottom = 21.0
+scale = Vector2(2, 1.25)
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+text = "Bug Report"
+metadata/_edit_use_anchors_ = true
+
+[node name="RealTitle" type="RichTextLabel" parent="BugReport"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 20.0
+offset_right = 208.0
+offset_bottom = 44.0
+scale = Vector2(1.25, 1.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+text = "Detention Slip"
+
+[node name="Line2D" type="Line2D" parent="BugReport"]
+points = PackedVector2Array(2, 34, 48, 36, 137, 37)
+width = 3.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="DrawnTitle2" type="RichTextLabel" parent="BugReport"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.114583
+anchor_right = 0.0125
+anchor_bottom = 0.127604
+offset_right = 60.0
+offset_bottom = 21.0
+scale = Vector2(2, 1.25)
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_q1d64")
+text = "Contact Email"
+metadata/_edit_use_anchors_ = true
+
+[node name="RealContact" type="RichTextLabel" parent="BugReport"]
+offset_left = 1.0
+offset_top = 65.0
+offset_right = 287.0
+offset_bottom = 90.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+text = "Student:"
+
+[node name="Line2D4" type="Line2D" parent="BugReport"]
+position = Vector2(0, 43)
+points = PackedVector2Array(2, 34, 48, 36, 68, 37)
+width = 3.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="RealReason" type="RichTextLabel" parent="BugReport"]
+offset_left = 2.0
+offset_top = 87.0
+offset_right = 288.0
+offset_bottom = 112.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+text = "Reason:"
+
+[node name="TextEdit" type="TextEdit" parent="BugReport"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 112.0
+offset_right = 315.0
+offset_bottom = 279.0
+wrap_mode = 1
+
+[node name="IncidentDate" type="RichTextLabel" parent="BugReport"]
+offset_left = 8.0
+offset_top = 281.0
+offset_right = 154.0
+offset_bottom = 307.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+text = "Date of Incident :"
+
+[node name="CrossedDate" type="RichTextLabel" parent="BugReport"]
+offset_left = 7.0
+offset_top = 305.0
+offset_right = 180.0
+offset_bottom = 331.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+text = "Date of Detention :"
+
+[node name="Line2D2" type="Line2D" parent="BugReport"]
+position = Vector2(0, 21)
+points = PackedVector2Array(157, 302, 309, 302)
+width = 2.0
+default_color = Color(0.0117647, 0.0117647, 0.0117647, 1)
+
+[node name="LineEdit" type="LineEdit" parent="BugReport"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 280.0
+offset_right = 314.0
+offset_bottom = 311.0
+
+[node name="Line2D3" type="Line2D" parent="BugReport"]
+position = Vector2(1, 25)
+points = PackedVector2Array(9, 297, 12, 286, 14, 295, 22, 291, 22, 296, 28, 286, 31, 299, 38, 285, 48, 297, 51, 286, 57, 294, 71, 286, 72, 298, 80, 286, 91, 297, 101, 290, 102, 298, 107, 288, 109, 284, 110, 297, 115, 288, 117, 296, 121, 290, 124, 297, 128, 287, 140, 297)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="ReportBug" type="Button" parent="BugReport"]
+offset_left = 251.0
+offset_top = 349.0
+offset_right = 304.0
+offset_bottom = 375.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_q1d64")
+text = "Report Bug"
+flat = true
+
+[node name="LineEdit2" type="LineEdit" parent="BugReport"]
+offset_left = 73.0
+offset_top = 63.0
+offset_right = 318.0
+offset_bottom = 94.0
+
+[connection signal="mouse_exited" from="ColorRect" to="." method="_on_page_mouse_exited"]
+[connection signal="pressed" from="ColorRect/General/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ColorRect/General/ReportBug" to="." method="_on_report_bug_pressed"]
+[connection signal="mouse_entered" from="ColorRect2" to="." method="_on_tab_mouse_entered" binds= [Color(1, 1, 1, 1), 0]]
+[connection signal="mouse_entered" from="ColorRect3" to="." method="_on_tab_mouse_entered" binds= [Color(1, 0, 0, 1), 1]]
+[connection signal="mouse_entered" from="ColorRect4" to="." method="_on_tab_mouse_entered" binds= [Color(0, 1, 1, 1), 2]]
+[connection signal="pressed" from="BugReport/ReportBug" to="." method="_on_report_bug_pressed"]

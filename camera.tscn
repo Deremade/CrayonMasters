@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7f6id3dv8sl1"]
+[gd_scene load_steps=6 format=3 uid="uid://c7f6id3dv8sl1"]
 
 [ext_resource type="PackedScene" uid="uid://ci4p06lu8tqqi" path="res://Notebook/notebook.tscn" id="1_8wqmy"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="2_y1hjf"]
 [ext_resource type="Script" path="res://NoteCard/NoteCard.gd" id="3_0bail"]
 [ext_resource type="Texture2D" uid="uid://c18xofugrp4e8" path="res://Notebook/linedPaper.png" id="3_0fufb"]
+[ext_resource type="PackedScene" uid="uid://djmi8it6ia2ku" path="res://Options.tscn" id="5_ggg7a"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -35,6 +36,8 @@ scroll_active = false
 visible = false
 layout_mode = 2
 text = "End Turn"
+
+[node name="Node2D" parent="Camera2D" instance=ExtResource("5_ggg7a")]
 
 [connection signal="select_map_item" from="Notebook" to="Camera2D/NoteCard" method="_on_notebook_select_map_item"]
 [connection signal="pressed" from="Camera2D/NoteCard/TurnButton" to="Camera2D/NoteCard" method="_on_turn_button_pressed"]
