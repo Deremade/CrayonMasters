@@ -28,6 +28,7 @@ text = "Quit Game"
 flat = true
 
 [node name="ReportBug" type="Button" parent="ColorRect/General"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 23.0
 offset_right = 54.0
@@ -62,6 +63,7 @@ offset_right = 208.0
 offset_bottom = 19.0
 
 [node name="MusicLabel" type="RichTextLabel" parent="ColorRect/Audio"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 20.0
 offset_right = 86.0
@@ -73,12 +75,14 @@ text = "Music
 "
 
 [node name="HSlider2" type="HSlider" parent="ColorRect/Audio"]
+layout_mode = 0
 offset_left = 87.0
 offset_top = 23.0
 offset_right = 209.0
 offset_bottom = 39.0
 
 [node name="SFXLabel" type="RichTextLabel" parent="ColorRect/Audio"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 41.0
 offset_right = 87.0
@@ -89,6 +93,7 @@ theme_override_font_sizes/normal_font_size = 20
 text = "SFX"
 
 [node name="HSlider3" type="HSlider" parent="ColorRect/Audio"]
+layout_mode = 0
 offset_left = 88.0
 offset_top = 44.0
 offset_right = 210.0
@@ -255,6 +260,7 @@ text = "Contact Email"
 metadata/_edit_use_anchors_ = true
 
 [node name="RealContact" type="RichTextLabel" parent="BugReport"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 65.0
 offset_right = 287.0
@@ -270,6 +276,7 @@ width = 3.0
 default_color = Color(1, 0, 0, 1)
 
 [node name="RealReason" type="RichTextLabel" parent="BugReport"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 87.0
 offset_right = 288.0
@@ -287,6 +294,7 @@ offset_bottom = 279.0
 wrap_mode = 1
 
 [node name="IncidentDate" type="RichTextLabel" parent="BugReport"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 281.0
 offset_right = 154.0
@@ -296,6 +304,7 @@ theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 text = "Date of Incident :"
 
 [node name="CrossedDate" type="RichTextLabel" parent="BugReport"]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 305.0
 offset_right = 180.0
@@ -324,6 +333,7 @@ width = 2.0
 default_color = Color(1, 0, 0, 1)
 
 [node name="ReportBug" type="Button" parent="BugReport"]
+layout_mode = 0
 offset_left = 251.0
 offset_top = 349.0
 offset_right = 304.0
@@ -335,6 +345,7 @@ text = "Report Bug"
 flat = true
 
 [node name="LineEdit2" type="LineEdit" parent="BugReport"]
+layout_mode = 0
 offset_left = 73.0
 offset_top = 63.0
 offset_right = 318.0

@@ -1,0 +1,210 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxirwg23edo7v"]
+
+[ext_resource type="Script" path="res://NoteBook.gd" id="1_1kv4w"]
+[ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="2_xvywh"]
+[ext_resource type="Texture2D" uid="uid://dwq8usqkwm5mq" path="res://Notebook/NoteBookCover.png" id="3_y4ft8"]
+[ext_resource type="Texture2D" uid="uid://dlct1aln2cn1y" path="res://Notebook/NotebookTag.png" id="4_pbvpb"]
+[ext_resource type="Texture2D" uid="uid://5t3pyinfh8ri" path="res://Notebook/openbook.png" id="5_144v3"]
+[ext_resource type="PackedScene" uid="uid://ci4p06lu8tqqi" path="res://Notebook/battlemap.tscn" id="6_kxyol"]
+[ext_resource type="Script" path="res://NoteCard/NoteCard.gd" id="7_b120d"]
+[ext_resource type="Texture2D" uid="uid://c18xofugrp4e8" path="res://Notebook/linedPaper.png" id="7_slu30"]
+
+[node name="NoteBook" type="Node2D"]
+script = ExtResource("1_1kv4w")
+
+[node name="Tab1" type="ColorRect" parent="."]
+offset_left = 364.0
+offset_top = 4.0
+offset_right = 442.0
+offset_bottom = 37.0
+rotation = 1.5708
+
+[node name="Tab1" type="Button" parent="Tab1"]
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 26.0
+pivot_offset = Vector2(40, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_xvywh")
+text = "Setting Details"
+flat = true
+
+[node name="Tab2" type="ColorRect" parent="."]
+offset_left = 364.0
+offset_top = 83.0
+offset_right = 442.0
+offset_bottom = 116.0
+rotation = 1.5708
+color = Color(1, 0.0588235, 0.0470588, 1)
+
+[node name="Tab2" type="Button" parent="Tab2"]
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 26.0
+pivot_offset = Vector2(40, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_xvywh")
+text = "Sagas"
+flat = true
+
+[node name="Tab3" type="ColorRect" parent="."]
+offset_left = 363.0
+offset_top = 162.0
+offset_right = 441.0
+offset_bottom = 195.0
+rotation = 1.5708
+color = Color(0.0235294, 1, 1, 1)
+
+[node name="Tab3" type="Button" parent="Tab3"]
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 26.0
+pivot_offset = Vector2(40, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_xvywh")
+text = "Adventures"
+flat = true
+
+[node name="Tab4" type="ColorRect" parent="."]
+offset_left = 364.0
+offset_top = 241.0
+offset_right = 442.0
+offset_bottom = 274.0
+rotation = 1.5708
+color = Color(0.870588, 0.933333, 0, 1)
+
+[node name="Tab3" type="Button" parent="Tab4"]
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 26.0
+pivot_offset = Vector2(40, 15)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_xvywh")
+text = "Battle Map"
+flat = true
+
+[node name="Cover" type="Node2D" parent="."]
+
+[node name="NoteBookCover" type="Sprite2D" parent="Cover"]
+position = Vector2(170, 218)
+texture = ExtResource("3_y4ft8")
+
+[node name="NotebookTag" type="Sprite2D" parent="Cover"]
+position = Vector2(188, 126)
+texture = ExtResource("4_pbvpb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Cover/NotebookTag"]
+offset_left = -71.0
+offset_top = -36.0
+offset_right = 67.0
+offset_bottom = 26.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_xvywh")
+text = "Title"
+
+[node name="Close" type="ColorRect" parent="."]
+visible = false
+offset_left = -259.0
+offset_top = 456.0
+offset_right = -181.0
+offset_bottom = 489.0
+rotation = -3.14159
+
+[node name="Close" type="Button" parent="Close"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 26.0
+offset_right = 153.0
+offset_bottom = 52.0
+scale = Vector2(-1, -1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.721569, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_xvywh")
+text = "Close"
+flat = true
+
+[node name="Pages" type="Node2D" parent="."]
+visible = false
+
+[node name="TextEdit" type="TextEdit" parent="Pages"]
+visible = false
+offset_left = -189.643
+offset_top = 9.96837
+offset_right = -33.6426
+offset_bottom = 58.9684
+text = "This is Page 1"
+
+[node name="TextEdit2" type="TextEdit" parent="Pages"]
+visible = false
+offset_left = -189.643
+offset_top = 9.96837
+offset_right = -33.6426
+offset_bottom = 58.9684
+text = "This is Page 2"
+
+[node name="TextEdit3" type="TextEdit" parent="Pages"]
+visible = false
+offset_left = -189.643
+offset_top = 9.96837
+offset_right = -33.6426
+offset_bottom = 58.9684
+text = "This is Page 3"
+
+[node name="Battle" type="Control" parent="Pages"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -189.643
+offset_top = 9.96837
+offset_right = -33.6426
+offset_bottom = 58.9684
+
+[node name="BattleMap" parent="Pages/Battle" instance=ExtResource("6_kxyol")]
+position = Vector2(-126.357, -0.968371)
+scale = Vector2(0.6, 0.6)
+
+[node name="NoteCard" type="Container" parent="Pages/Battle"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.035
+anchor_right = -0.035
+offset_left = 317.103
+offset_top = 317.032
+offset_right = 637.103
+offset_bottom = 507.032
+script = ExtResource("7_b120d")
+
+[node name="LinedPaper" type="Sprite2D" parent="Pages/Battle/NoteCard"]
+modulate = Color(1, 0.576471, 1, 1)
+position = Vector2(164.3, 91.8962)
+scale = Vector2(1.04187, 0.980248)
+texture = ExtResource("7_slu30")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Pages/Battle/NoteCard"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+text = "Character"
+scroll_active = false
+
+[node name="TurnButton" type="Button" parent="Pages/Battle/NoteCard"]
+visible = false
+layout_mode = 2
+text = "End Turn"
+
+[node name="OpenBook" type="Sprite2D" parent="Pages"]
+z_index = -1
+position = Vector2(1, 218)
+scale = Vector2(1.48444, 1.60633)
+texture = ExtResource("5_144v3")
+
+[connection signal="pressed" from="Tab1/Tab1" to="." method="open_tab" binds= [0]]
+[connection signal="pressed" from="Tab2/Tab2" to="." method="open_tab" binds= [1]]
+[connection signal="pressed" from="Tab3/Tab3" to="." method="open_tab" binds= [2]]
+[connection signal="pressed" from="Tab4/Tab3" to="." method="open_tab" binds= [3]]
+[connection signal="pressed" from="Close/Close" to="." method="close_book"]
+[connection signal="select_map_item" from="Pages/Battle/BattleMap" to="Pages/Battle/NoteCard" method="_on_battle_map_select_map_item"]
+[connection signal="pressed" from="Pages/Battle/NoteCard/TurnButton" to="Pages/Battle/NoteCard" method="_on_turn_button_pressed"]

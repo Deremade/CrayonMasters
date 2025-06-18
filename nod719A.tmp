@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc83hs28c2m8d"]
+
+[ext_resource type="PackedScene" uid="uid://djmi8it6ia2ku" path="res://Options.tscn" id="1_lqirf"]
+[ext_resource type="PackedScene" uid="uid://cxirwg23edo7v" path="res://note_book.tscn" id="2_min2i"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="OptionsMenu" parent="." instance=ExtResource("1_lqirf")]
+
+[node name="NoteBook" parent="." instance=ExtResource("2_min2i")]
+position = Vector2(585, 85)

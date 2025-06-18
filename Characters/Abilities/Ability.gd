@@ -47,7 +47,7 @@ func _init(set_name : String, set_reach : int):
 # Uses : _on_paper_select_tile in Character class
 #
 # TODO: expand to include an effect_character() function that grabs charactr from Tile
-func use_ability(tile : Tile):
+func use_ability(_tile : Tile):
 	pass
 
 

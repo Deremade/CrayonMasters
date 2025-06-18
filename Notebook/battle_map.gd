@@ -1,7 +1,7 @@
-class_name NoteBook extends Node2D
-# Class: NoteBook
+class_name BattleMap extends Node2D
+# Class: BattleMap
 # Extends: Node2D
-# Description: Acts as the primary node for the Notboo.tscn file and holds basic Notebook functionality
+# Description: Acts as the primary node for the Notbook.tscn file and holds basic BattleMap functionality
 #
 # Properties:
 #   - turns: Array - Holds all Characters in the turn order
@@ -18,8 +18,8 @@ class_name NoteBook extends Node2D
 # Usage Notes:
 #   - Mostly acts as a middle man or "observer"
 
-# Scene: NoteBook
-# Path: res://path/to/scene.tscn
+# Scene: battlemap
+# Path: res://Notebook/battlemap.tscn
 # 
 # Purpose:
 #   Describe the main purpose of this scene/node
@@ -46,9 +46,10 @@ class_name NoteBook extends Node2D
 
 
 @onready var turns = [$Icon, $Icon2]
-@onready var interactables = [$Sprite2D]
+@onready var interactables = []
 var cur_turn = 0
 signal select_map_item
+var mouse_in = false
 
 func _ready():
 	turns[0].is_turn = true
@@ -133,3 +134,27 @@ func interactiables(start, reach):
 		if($Paper.can_target(start, i.grid_pos, reach)):
 			viable.append(i)
 	return viable
+
+# Function: _on_area_2d_mouse_entered
+# Description: Sets mouse_in to true when mouse enters, needed to make sure the _input doesn't trigger when the mouse clicks on somethinng outside the map and crashes the game
+# Dependencies: None
+# Side Effects: mouse_in = true
+# Uses :
+#   -Triggered by signal from Area2D
+#
+# Modification Guidelines:
+#   - Check Area2D
+func _on_area_2d_mouse_entered():
+	mouse_in = true
+
+# Function: _on_area_2d_mouse_entered
+# Description: Sets mouse_in to false when mouse enters, needed to make sure the _input doesn't trigger when the mouse clicks on somethinng outside the map and crashes the game
+# Dependencies: None
+# Side Effects: mouse_in = false
+# Uses :
+#   -Triggered by signal from Area2D
+#
+# Modification Guidelines:
+#   - Check Area2D
+func _on_area_2d_mouse_exited():
+	mouse_in = false

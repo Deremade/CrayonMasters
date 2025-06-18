@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://ci4p06lu8tqqi"]
+
+[ext_resource type="Script" path="res://Notebook/battle_map.gd" id="1_63u3v"]
+[ext_resource type="TileSet" uid="uid://b1lh66qxckh0m" path="res://Notebook/battlemap.tres" id="2_q73bp"]
+[ext_resource type="Script" path="res://Notebook/Paper.gd" id="3_oj760"]
+[ext_resource type="Script" path="res://Notebook/Navigation.gd" id="6_drquv"]
+[ext_resource type="PackedScene" uid="uid://bgp7v5wavpurg" path="res://Characters/Character.tscn" id="7_bcldc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvy2l"]
+size = Vector2(1155, 647)
+
+[node name="BattleMap" type="Node2D"]
+script = ExtResource("1_63u3v")
+
+[node name="Paper" type="TileMap" parent="."]
+tile_set = ExtResource("2_q73bp")
+cell_quadrant_size = 64
+format = 2
+script = ExtResource("3_oj760")
+
+[node name="Ink" type="TileMap" parent="Paper"]
+modulate = Color(0, 0, 0, 0.439216)
+position = Vector2(0, -1)
+tile_set = ExtResource("2_q73bp")
+cell_quadrant_size = 64
+format = 2
+layer_0/tile_data = PackedInt32Array(131080, 0, 0, 131079, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0, 458758, 0, 0, 458759, 0, 0, 262152, 0, 0, 327688, 0, 0, 131081, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 327690, 0, 0, 393226, 0, 0, 458762, 0, 0, 458761, 0, 0, 196617, 1, 0, 262153, 1, 0, 393225, 1, 0, 327689, 1, 0, 524297, 0, 0, 589833, 0, 0)
+
+[node name="Navigation" type="Control" parent="Paper"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_drquv")
+
+[node name="Icon" parent="." instance=ExtResource("7_bcldc")]
+self_modulate = Color(1, 0, 1, 1)
+position = Vector2(31, 31)
+char_name = "Jack"
+start_pos = Vector2i(3, 3)
+
+[node name="Icon2" parent="." instance=ExtResource("7_bcldc")]
+self_modulate = Color(0, 1, 0, 1)
+position = Vector2(103, 33)
+char_name = "bob"
+start_pos = Vector2i(2, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(577.5, 324.5)
+shape = SubResource("RectangleShape2D_jvy2l")
+debug_color = Color(0, 0.6, 0.701961, 0.0588235)
+
+[connection signal="select_map_item" from="Paper" to="." method="_on_paper_select_map_item"]
+[connection signal="select_tile" from="Paper" to="Icon" method="_on_paper_select_tile"]
+[connection signal="select_tile" from="Paper" to="Icon2" method="_on_paper_select_tile"]
+[connection signal="change_turn" from="Icon" to="." method="_on_icon_change_turn"]
+[connection signal="change_turn" from="Icon2" to="." method="_on_icon_change_turn"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -41,7 +41,7 @@ func _ready():
 #   -continue_path, _ready : Charcter.gd
 #
 # Modification Guidelines:
-#   - Remember to keep th position relativr to the tileset
+#   - Remember to keep th position relative to the tileset
 func set_grid_pos(new_pos: Vector2i):
 	grid_pos = new_pos
 	position = (grid_pos * 64) + Vector2i(32, 32)

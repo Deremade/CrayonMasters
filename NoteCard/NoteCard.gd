@@ -1,4 +1,4 @@
-class_name NotCard extends Container
+class_name NoteCard extends Container
 # Class: NoteCard
 # Extends: Container
 # Description: A NoteCard that serves as the main intrface tghe user uses to control characters (Will expand to information abotu characters)
@@ -52,8 +52,8 @@ func _ready():
 #
 # Modification Guidelines:
 #   - Keep in mind : This is a connector function betwen the user's actions, Characters, and The NoteCard
-#   - TODO : Move functionality to Paper/Character (especially so that Ability can eb Tile absed instead of Map-Item based)
-func _on_notebook_select_map_item(item : MapItem):
+#   - TODO : Move functionality to Paper/Character (especially so that Ability can be Tile based instead of Map-Item based)
+func _on_battle_map_select_map_item(item : MapItem):
 	#If the player is using an action that would target what they click on
 	if is_targeting:
 		#If the item can be targeted use the ability or interact with the item
@@ -119,7 +119,7 @@ func on_expand(data, col):
 #   - This is a middleman to connect a signal to Character varibales
 #   - Keep the is_targeting function in mind
 func on_check(data, pressed):
-	#If t he data is not an Ability, handle other possibilities
+	#If the data is not an Ability, handle other possibilities
 	if(not data is Ability):
 		if(data == "Move"):
 			selected.is_moving = pressed
