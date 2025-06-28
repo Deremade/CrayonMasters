@@ -27,5 +27,5 @@ class_name Interactiable extends MapItem
 #
 # Modification Guidelines:
 #   - FNF
-func interact(character: Character) -> void:
+func interact(_character: Character) -> void:
 	print("Interacted")

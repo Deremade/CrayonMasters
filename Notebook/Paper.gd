@@ -22,7 +22,7 @@ class_name Paper extends TileMap
 signal select_tile
 signal select_map_item
 var tiles = []
-var map_size = Vector2i(18, 10)
+var map_size = Vector2i(17, 10)
 
 # Function: _ready
 # Description: Setup function automatically triggered when loaded
@@ -44,16 +44,22 @@ func _ready():
 # Returns: void
 # Dependencies: none
 # Side Effects: emits the select_tile and select_map_item signals
-func _unhandled_input(event):
+func _input(event):
+	#Prevent erros by ensuring the mouse is in the right area
+	if(not get_parent().mouse_in):
+		return
 	#If Left Click
 	if event.is_action_pressed("left_click"):
 		#Find the grid_positiona nd emit the signal that the tile has been selected
-		var grid_position = local_to_map(get_global_mouse_position())
+		var grid_position = global_to_grid(get_global_mouse_position())
+		if(grid_position.x >= map_size.x) : return
+		if(grid_position.y >= map_size.y) : return
 		select_tile.emit(tiles[grid_position.x][grid_position.y])
 		#Iterate through clickable items and emit a signal if they are on the same tile
 		for item in get_parent().turns:
 			if(item.grid_pos == grid_position):
 				select_map_item.emit(item)
+				print(item)
 		for item in get_parent().interactables:
 			if(item.grid_pos == grid_position):
 				select_map_item.emit(item)
@@ -158,3 +164,28 @@ func can_target(start : Vector2i, target: Vector2i, reach : int) -> bool:
 #   - Remember atlas variables
 func change_tile(tile : Tile):
 	$Ink.set_cell(0, tile.pos, tile.atlas, Vector2i(0,0))
+
+# Function: global_to_grid
+# Description: Converst a global position to grid position
+# Parameters:
+#   - input: Vector2 - The inpur global vector
+# Returns: Vector2i - The grid position
+# Dependencies: to_local, local_to_map
+# Side Effects: None
+# Example Usage:
+#   var grid_position = global_to_grid(get_global_mouse_position())
+# Uses :
+#   -_input
+#
+# Modification Guidelines:
+#   - Remember tha the grid posiion is relative to the global posiiton and scale of the node (and parent nodes all the way up)
+func global_to_grid(input : Vector2) -> Vector2i:
+	# Get the global position
+	var global_click_pos = input
+		
+	# Convert global position to TileMap's local coordinate space
+	var local_click_pos = to_local(global_click_pos)
+		
+	# Get the tile grid position
+	var tile_pos = local_to_map(local_click_pos)
+	return tile_pos
