@@ -84,7 +84,7 @@ func _on_icon_change_turn(is_turn : bool):
 # Example Usage:
 #   var result = function_name(param1, param2)
 # Uses :
-#   -_on_notebook_select_map_item in NoteCard.gd (receives signal)
+#   -_on_battle_map_select_map_item in NoteCard.gd (receives signal)
 #   -_unhandled_input in Paper.gd (mits signal)
 # Modification Guidelines:
 #   - Is a middleman fucntion

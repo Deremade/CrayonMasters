@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://qargwn0rihns"]
+
+[ext_resource type="Script" path="res://Characters/Health/Body/Body.gd" id="1_ev68n"]
+[ext_resource type="Texture2D" uid="uid://dd8v1juv76r0p" path="res://Characters/Health/Body/image.jpg.jpg" id="1_lpc1k"]
+[ext_resource type="Texture2D" uid="uid://qa6sgmigkq6h" path="res://Characters/Health/Body/HeadandNeck.png" id="2_fnlh7"]
+[ext_resource type="Texture2D" uid="uid://paopqih7e5e3" path="res://Characters/Health/Body/Heart.png" id="4_dedpj"]
+[ext_resource type="Script" path="res://Characters/Health/Body/BodyPart.gd" id="4_rcgjj"]
+[ext_resource type="Texture2D" uid="uid://rrmyutsyxf02" path="res://Characters/Health/Body/Lungs.png" id="5_vcd0v"]
+[ext_resource type="Texture2D" uid="uid://be1b1kea1ky4d" path="res://Characters/Health/Body/Abs.png" id="6_qakny"]
+[ext_resource type="Texture2D" uid="uid://cppxnj5vuhtan" path="res://Characters/Health/Body/upper_arm.png" id="7_uqybu"]
+[ext_resource type="Texture2D" uid="uid://bx6nglhab2d6t" path="res://Characters/Health/Body/lower_arm.png" id="8_excyl"]
+[ext_resource type="Texture2D" uid="uid://c3bd0t5ugvrxc" path="res://Characters/Health/Body/Hand.png" id="9_rrl5d"]
+[ext_resource type="Texture2D" uid="uid://c0ilytcq55858" path="res://Characters/Health/Body/shoulder.png" id="10_kuvxd"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ev68n")
+
+[node name="BaseImage" type="Sprite2D" parent="."]
+self_modulate = Color(0.298039, 0.298039, 0.298039, 1)
+position = Vector2(287, 513)
+texture = ExtResource("1_lpc1k")
+
+[node name="HeadAndNeck" type="Button" parent="."]
+offset_left = 236.0
+offset_top = 132.0
+offset_right = 339.0
+offset_bottom = 307.0
+icon = ExtResource("2_fnlh7")
+flat = true
+expand_icon = true
+script = ExtResource("4_rcgjj")
+
+[node name="Arm" type="Node2D" parent="."]
+
+[node name="Shoulder" type="Button" parent="Arm"]
+offset_left = 171.0
+offset_top = 253.0
+offset_right = 289.0
+offset_bottom = 387.0
+icon = ExtResource("10_kuvxd")
+flat = true
+script = ExtResource("4_rcgjj")
+
+[node name="UpperArm" type="Button" parent="Arm"]
+offset_left = 173.0
+offset_top = 345.0
+offset_right = 228.0
+offset_bottom = 475.0
+icon = ExtResource("7_uqybu")
+flat = true
+script = ExtResource("4_rcgjj")
+
+[node name="LowerArm" type="Button" parent="Arm"]
+offset_left = 156.0
+offset_top = 422.0
+offset_right = 217.0
+offset_bottom = 547.0
+icon = ExtResource("8_excyl")
+flat = true
+script = ExtResource("4_rcgjj")
+
+[node name="Hand" type="Button" parent="Arm"]
+offset_left = 139.0
+offset_top = 518.0
+offset_right = 207.0
+offset_bottom = 634.0
+icon = ExtResource("9_rrl5d")
+flat = true
+script = ExtResource("4_rcgjj")
+
+[node name="Torso" type="Node2D" parent="."]
+
+[node name="Abs" type="Button" parent="Torso"]
+offset_left = 210.0
+offset_top = 405.0
+offset_right = 367.0
+offset_bottom = 588.0
+icon = ExtResource("6_qakny")
+flat = true
+script = ExtResource("4_rcgjj")
+
+[node name="Lungs" type="Button" parent="Torso"]
+offset_left = 207.0
+offset_top = 307.0
+offset_right = 375.0
+offset_bottom = 443.0
+icon = ExtResource("5_vcd0v")
+flat = true
+script = ExtResource("4_rcgjj")
+
+[node name="Heart" type="Button" parent="Torso"]
+offset_left = 256.0
+offset_top = 317.0
+offset_right = 338.0
+offset_bottom = 430.0
+icon = ExtResource("4_dedpj")
+flat = true
+script = ExtResource("4_rcgjj")
+
+[connection signal="mouse_entered" from="HeadAndNeck" to="HeadAndNeck" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HeadAndNeck" to="HeadAndNeck" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Arm/Shoulder" to="Arm/Shoulder" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Arm/Shoulder" to="Arm/Shoulder" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Arm/UpperArm" to="Arm/UpperArm" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Arm/UpperArm" to="Arm/UpperArm" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Arm/LowerArm" to="Arm/LowerArm" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Arm/LowerArm" to="Arm/LowerArm" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Arm/Hand" to="Arm/Hand" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Arm/Hand" to="Arm/Hand" method="_on_mouse_exited"]
+[connection signal="change_hp" from="Torso/Abs" to="." method="_on_change_hp"]
+[connection signal="mouse_entered" from="Torso/Abs" to="Torso/Abs" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Torso/Abs" to="Torso/Abs" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Torso/Lungs" to="Torso/Lungs" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Torso/Lungs" to="Torso/Lungs" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Torso/Heart" to="Torso/Heart" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Torso/Heart" to="Torso/Heart" method="_on_mouse_exited"]

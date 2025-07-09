@@ -59,7 +59,6 @@ func _input(event):
 		for item in get_parent().turns:
 			if(item.grid_pos == grid_position):
 				select_map_item.emit(item)
-				print(item)
 		for item in get_parent().interactables:
 			if(item.grid_pos == grid_position):
 				select_map_item.emit(item)

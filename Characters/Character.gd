@@ -74,6 +74,7 @@ var is_turn : bool = false : set = set_turn
 signal change_turn
 #Character info
 @export var char_name : String
+var health = Health.new()
 
 ################################################################################
 
@@ -217,7 +218,7 @@ func set_turn(turn : bool):
 # Example Usage:
 #   selected.char_use_ability(item)
 # Uses :
-#   -NoteCard.gd : _on_notebook_select_map_item
+#   -NoteCard.gd : _on_battle_map_select_map_item
 #
 # Modification Guidelines:
 #   - Takes Character as parameter
@@ -227,6 +228,7 @@ func set_turn(turn : bool):
 func char_use_ability(target : Character):
 	if(actions > 0):
 		print(self, " uses ", selcted_ability, " on ", target)
+		selcted_ability.use_ability_on_char(target)
 		actions -= 1
 	else :
 		print("NO ACTIONS AVAILABLE")
@@ -255,7 +257,7 @@ func finish_ability(targets):
 # Dependencies: Interactable
 # Side Effects: invokes the interact() function from InteractableItem.gd
 # Uses :
-#   -NoteCard.gd : _on_notebook_select_map_item
+#   -NoteCard.gd : _on_battle_map_select_map_item
 # Modification Guidelines:
 #   - Most functionality ishandled in InteractableItem.gd
 func char_interact(item : Interactiable):
@@ -310,7 +312,7 @@ func get_interactables(reach):
 #   - t: Tile - the selected tile
 # Returns: void
 # Dependencies: Tile, Notebook (parent), Paper
-# Side Effects: activates start_movement(), can activate selected_ability.use_ability()
+# Side Effects: activates start_movement(), can activate selected_ability.use_ability_on_tile()
 # Uses :
 #   -_unhandled_input from Paper.gd
 # Modification Guidelines:
@@ -322,7 +324,7 @@ func _on_paper_select_tile(t : Tile):
 		start_movement()
 	#If some ability is selected, use the ability
 	if(selcted_ability != null):
-		selcted_ability.use_ability(t)
+		selcted_ability.use_ability_on_tile(t)
 
 # Function: player_selects_ability
 # Description: Selects ana bility for use
@@ -350,3 +352,17 @@ func player_selects_ability(a : Ability):
 func player_deselects_ability():
 	selcted_ability = null
 	finish_ability(get_characters())
+
+# Function: dmg
+# Description: Has the character take damage
+# Parameters:
+#   - amount: Number - The amount of damage the character takes
+# Returns: void
+# Dependencies: dmg() in health (Health.gd)
+# Side Effects: activates "dmg()" functon in the Health class
+# Example Usage:
+#   dmg(randi() % 10)
+# Uses :
+#   -use_ability_on_char (Ability.gd)
+func dmg(amount):
+	health.dmg(amount)

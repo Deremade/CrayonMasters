@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxirwg23edo7v"]
+[gd_scene load_steps=9 format=3 uid="uid://dgukfjpxf3njp"]
 
 [ext_resource type="Script" path="res://NoteBook.gd" id="1_1kv4w"]
 [ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="2_xvywh"]
@@ -184,14 +184,18 @@ position = Vector2(164.3, 91.8962)
 scale = Vector2(1.04187, 0.980248)
 texture = ExtResource("7_slu30")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Pages/Battle/NoteCard"]
+[node name="CharName" type="RichTextLabel" parent="Pages/Battle/NoteCard"]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 text = "Character"
 scroll_active = false
 
+[node name="Health" type="RichTextLabel" parent="Pages/Battle/NoteCard"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+scroll_active = false
+
 [node name="TurnButton" type="Button" parent="Pages/Battle/NoteCard"]
-visible = false
 layout_mode = 2
 text = "End Turn"
 

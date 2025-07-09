@@ -67,6 +67,6 @@ func player_targeted(is_target):
 # Dependencies: $TargetCircle
 # Side Effects: none
 # Uses :
-#   -_on_notebook_select_map_item in NotCard.gd
+#   -_on_battle_map_select_map_item in NotCard.gd
 func can_target() -> bool:
 	return $TargetCircle.visible

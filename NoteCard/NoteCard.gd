@@ -36,11 +36,12 @@ var is_targeting = false
 
 func _ready():
 	$TurnButton.position = Vector2(225, 0)
+	$Health.position = Vector2(112, 0)
 
 ################################################################################
 #Player-NoteBook Interactions
 
-# Function: _on_notebook_select_map_item
+# Function: _on_battle_map_select_map_item
 # Description: Activates when an item from the notebook is selected
 # Parameters:
 #   - item: MapItem - The item being clicked on
@@ -70,7 +71,7 @@ func _on_battle_map_select_map_item(item : MapItem):
 	selected = item
 	selected.change_turn.connect(turn_operations)
 	turn_operations(selected.is_turn)
-	$RichTextLabel.text = item.char_name
+	$CharName.text = item.char_name
 
 ################################################################################
 #Player-NoteCard Interactions
@@ -171,7 +172,7 @@ func _on_turn_button_pressed():
 # Dependencies: add_item and $Button as child node
 # Side Effects: clears is_targeting and adds or removes initial tabs
 # Uses :
-#   -set_turn : Character.gd (via signal connected in _on_notebook_select_map_item : this file)
+#   -set_turn : Character.gd (via signal connected in _on_battle_map_select_map_item : this file)
 func turn_operations(is_turn):
 	clear_col(0)
 	$TurnButton.visible = is_turn

@@ -22,7 +22,7 @@ var reach : int
 # Function: _init
 # Description: Constructor Function
 # Parameters:
-#   - set_name: String - Name of Ability
+#   - set_ability_name: String - Name of Ability
 #   - set_reach: int - Reach
 # Returns: void
 # Dependencies: None
@@ -33,11 +33,11 @@ var reach : int
 #
 # TODO:
 #   - Expand so a dictionary can be inserted to construct the ability
-func _init(set_name : String, set_reach : int):
-	name = set_name
+func _init(set_ability_name : String, set_reach : int):
+	name = set_ability_name
 	reach = set_reach
 
-# Function: use_ability
+# Function: use_ability_on_tile
 # Description: Abstract function that activates the effect of the ability
 # Parameters:
 #   - tile: Tile - Description of parameter
@@ -47,9 +47,22 @@ func _init(set_name : String, set_reach : int):
 # Uses : _on_paper_select_tile in Character class
 #
 # TODO: expand to include an effect_character() function that grabs charactr from Tile
-func use_ability(_tile : Tile):
+func use_ability_on_tile(_tile : Tile):
 	pass
 
+# Function: use_ability_on_char
+# Description: Abstract function that activates the effect of the ability
+# Parameters:
+#   - char: Character - Description of parameter
+# Returns: void
+# Dependencies: Tile class
+# Side Effects: NA
+# Uses : char_use_ability in Character class
+#
+# TODO: expand to include an effect_character() function that grabs charactr from Tile
+func use_ability_on_char(_char : Character):
+	_char.dmg((randi() % 10)+1)
+	pass
 
 func _to_string():
 	return name
