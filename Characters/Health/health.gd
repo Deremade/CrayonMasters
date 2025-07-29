@@ -33,8 +33,10 @@ var max_hp = 10
 # Anatomy
 var anatomy = Body.new()
 
+signal change_health
+
 #Use the anatomy or not
-static var body : bool = true : set = swtich_body
+static var body : bool = false : set = swtich_body
 #Use it points or not
 static var hit_points : bool = false : set = switch_hp
 
@@ -64,6 +66,7 @@ func dmg(amount : int):
 		hp -= amount
 		return
 	hearts -= ceil(float(amount)/3)
+	change_health.emit()
 
 #### SET FUNCTIONS ####
 static func swtich_body(use_body : bool):

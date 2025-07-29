@@ -1,0 +1,272 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnpim5uwk68vt"]
+
+[ext_resource type="Script" path="res://NotePad/NotePad.gd" id="1_jr525"]
+[ext_resource type="Texture2D" uid="uid://fo6uy6dcbfof" path="res://NotePad/ComfyUI_temp_ssdri_00008_.png" id="2_0cx2a"]
+[ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="3_4ex2e"]
+[ext_resource type="Texture2D" uid="uid://b6migegelpni0" path="res://NoteCard/Arrow.png" id="4_6ejnc"]
+[ext_resource type="PackedScene" uid="uid://kpe6qvva4pww" path="res://NotePad/sticky_note.tscn" id="5_smp7j"]
+[ext_resource type="Texture2D" uid="uid://cea2q82r0l022" path="res://NoteCard/Check.png" id="6_k2uu6"]
+
+[node name="NotePad" type="ColorRect"]
+offset_left = 44.0
+offset_top = -32.0
+offset_right = 338.0
+offset_bottom = 414.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_jr525")
+
+[node name="NotepadPaper" type="Sprite2D" parent="."]
+position = Vector2(148, 224)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_0cx2a")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 2.99998
+offset_right = 20.0
+offset_bottom = 2.99998
+
+[node name="CharName" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 29.0
+offset_right = 215.0
+offset_bottom = 68.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 30
+text = "Character Name"
+scroll_active = false
+
+[node name="Endturn" type="RichTextLabel" parent="Main"]
+visible = false
+layout_mode = 0
+offset_left = 164.0
+offset_top = 76.0
+offset_right = 267.0
+offset_bottom = 103.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 20
+text = " End Turn"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/Endturn"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 98.0
+offset_bottom = 26.0
+icon = ExtResource("4_6ejnc")
+flat = true
+
+[node name="Move" type="RichTextLabel" parent="Main"]
+visible = false
+layout_mode = 0
+offset_left = 167.0
+offset_top = 98.0
+offset_right = 279.0
+offset_bottom = 125.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 20
+text = " Move "
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="CheckButton" parent="Main/Move"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = -0.999985
+offset_right = 110.0
+offset_bottom = 25.0
+flat = true
+
+[node name="Inventory" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 122.0
+offset_right = 272.0
+offset_bottom = 149.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 20
+text = " Inventory"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/Inventory"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 98.0
+offset_bottom = 26.0
+icon = ExtResource("4_6ejnc")
+flat = true
+
+[node name="Abiltiies" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 149.0
+offset_right = 279.0
+offset_bottom = 176.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 20
+text = " Abilities"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/Abiltiies"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -1.0
+offset_right = 98.0
+offset_bottom = 25.0
+icon = ExtResource("4_6ejnc")
+flat = true
+
+[node name="StickNote" parent="Main" instance=ExtResource("5_smp7j")]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 181.0
+offset_right = 271.0
+offset_bottom = 277.0
+
+[node name="StickNote2" parent="Main" instance=ExtResource("5_smp7j")]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 181.0
+offset_right = 85.0
+offset_bottom = 277.0
+
+[node name="StickNote3" parent="Main" instance=ExtResource("5_smp7j")]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 182.0
+offset_right = 178.0
+offset_bottom = 278.0
+
+[node name="Health" type="RichTextLabel" parent="Main"]
+offset_left = -1.0
+offset_top = 155.0
+offset_right = 111.0
+offset_bottom = 182.0
+theme_override_colors/default_color = Color(0.992157, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0.929412, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 20
+text = " Health"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/Health"]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 87.0
+offset_top = -2.99998
+offset_right = 113.0
+offset_bottom = 23.0
+icon = ExtResource("4_6ejnc")
+flat = true
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 9.0
+offset_right = 294.0
+offset_bottom = 39.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.627451, 0.0235294, 0.211765, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.917647, 0, 0.223529, 1)
+theme_override_fonts/font = ExtResource("3_4ex2e")
+theme_override_font_sizes/font_size = 20
+action_mode = 0
+text = "X"
+flat = true
+
+[node name="Inventory" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 2.99998
+offset_right = 20.0
+offset_bottom = 2.99998
+
+[node name="BackToMain" type="RichTextLabel" parent="Inventory"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 417.0
+offset_right = 97.0
+offset_bottom = 444.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 20
+text = "     Main"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Inventory/BackToMain"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -1.99997
+offset_right = 50.0
+offset_bottom = 24.0
+scale = Vector2(-1, 1)
+icon = ExtResource("4_6ejnc")
+flat = true
+
+[node name="Abiltiies" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 2.99998
+offset_right = 20.0
+offset_bottom = 2.99998
+
+[node name="BackToMain" type="RichTextLabel" parent="Abiltiies"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 417.0
+offset_right = 97.0
+offset_bottom = 444.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_4ex2e")
+theme_override_font_sizes/normal_font_size = 20
+text = "     Main"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="Abiltiies/BackToMain"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -1.99997
+offset_right = 50.0
+offset_bottom = 24.0
+scale = Vector2(-1, 1)
+icon = ExtResource("4_6ejnc")
+flat = true
+
+[node name="ProfilePic" type="Sprite2D" parent="."]
+position = Vector2(58.834, 109.742)
+scale = Vector2(5.12956, 5.02865)
+texture = ExtResource("6_k2uu6")
+
+[connection signal="pressed" from="Main/Endturn/Button" to="." method="_on_end_turn"]
+[connection signal="toggled" from="Main/Move/Button" to="." method="_on_button_toggled"]
+[connection signal="pressed" from="Main/Inventory/Button" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="Main/Abiltiies/Button" to="." method="_on_abilities_pressed"]
+[connection signal="select_option" from="Main/StickNote" to="." method="select_option"]
+[connection signal="select_option" from="Main/StickNote2" to="." method="select_option"]
+[connection signal="select_option" from="Main/StickNote3" to="." method="select_option"]
+[connection signal="pressed" from="Main/Health/Button" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Inventory/BackToMain/Button" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Abiltiies/BackToMain/Button" to="." method="_on_back_pressed"]

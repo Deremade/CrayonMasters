@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://kpe6qvva4pww"]
+
+[ext_resource type="Script" path="res://NotePad/sticky_note.gd" id="1_7gm3f"]
+[ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="1_m2qrs"]
+[ext_resource type="Texture2D" uid="uid://cea2q82r0l022" path="res://NoteCard/Check.png" id="2_2fclc"]
+[ext_resource type="Texture2D" uid="uid://b6migegelpni0" path="res://NoteCard/Arrow.png" id="3_ch5w3"]
+
+[node name="StickNote" type="ColorRect"]
+offset_right = 96.0
+offset_bottom = 96.0
+scale = Vector2(0.9, 0.9)
+color = Color(1, 0.384314, 1, 1)
+script = ExtResource("1_7gm3f")
+
+[node name="Main" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 1.0
+
+[node name="ItemName" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 94.0
+offset_bottom = 30.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_m2qrs")
+theme_override_font_sizes/normal_font_size = 25
+text = "Item Name"
+scroll_active = false
+
+[node name="Use" type="Button" parent="Main"]
+layout_mode = 0
+offset_left = 48.8889
+offset_top = 22.2222
+offset_right = 104.889
+offset_bottom = 52.2222
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("1_m2qrs")
+theme_override_font_sizes/font_size = 20
+action_mode = 0
+text = "Use"
+flat = true
+
+[node name="Settings" type="Button" parent="Main"]
+visible = false
+layout_mode = 0
+offset_left = 47.7778
+offset_top = 43.3333
+offset_right = 104.778
+offset_bottom = 73.3333
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("1_m2qrs")
+theme_override_font_sizes/font_size = 20
+action_mode = 0
+text = "Settings"
+flat = true
+
+[node name="Info" type="Button" parent="Main"]
+layout_mode = 0
+offset_left = 54.4444
+offset_top = 73.3333
+offset_right = 103.444
+offset_bottom = 103.333
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("1_m2qrs")
+theme_override_font_sizes/font_size = 20
+action_mode = 0
+text = "Info"
+flat = true
+
+[node name="Check" type="Sprite2D" parent="Main"]
+position = Vector2(28.8889, 53.3333)
+scale = Vector2(2.2284, 2.04321)
+texture = ExtResource("2_2fclc")
+
+[node name="Opening" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = -39.0
+offset_right = 96.0
+offset_bottom = 30.0
+color = Color(1, 0.384314, 1, 1)
+
+[node name="Line2D" type="Line2D" parent="Opening"]
+points = PackedVector2Array(0, 69, 95.5556, 69)
+width = 1.0
+default_color = Color(0, 0, 0, 0.415686)
+
+[node name="Close_SN" type="Button" parent="Opening"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 58.0
+offset_bottom = 26.0
+rotation = 1.5708
+icon = ExtResource("3_ch5w3")
+flat = true
+
+[connection signal="pressed" from="Main/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="Main/Info" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="Opening/Close_SN" to="." method="_on_close_sn_pressed"]

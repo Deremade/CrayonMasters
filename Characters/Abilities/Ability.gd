@@ -61,7 +61,7 @@ func use_ability_on_tile(_tile : Tile):
 #
 # TODO: expand to include an effect_character() function that grabs charactr from Tile
 func use_ability_on_char(_char : Character):
-	_char.dmg((randi() % 10)+1)
+	_char.dmg(3)
 	pass
 
 func _to_string():

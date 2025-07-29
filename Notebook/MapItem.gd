@@ -1,4 +1,4 @@
-class_name MapItem extends Sprite2D
+class_name MapItem extends Node2D
 # Class: MapItem
 # Extends: Sprite2D
 # Description: An item that apears on the map

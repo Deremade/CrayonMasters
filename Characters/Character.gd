@@ -75,6 +75,9 @@ signal change_turn
 #Character info
 @export var char_name : String
 var health = Health.new()
+#Drag the Panel
+var drag
+var local_mouse_rel
 
 ################################################################################
 
@@ -92,7 +95,11 @@ func _to_string():
 #   - Changes grid_pos to the start_pos (Defined in Parent class MapItem)
 func _ready():
 	grid_pos = start_pos
-	$RichTextLabel.text = char_name
+	$NameTag.text = char_name
+	
+func _process(_delta):
+	if(drag):
+		$NotePad.global_position = get_global_mouse_position()-local_mouse_rel
 
 ################################################################################
 
@@ -203,6 +210,7 @@ func set_turn(turn : bool):
 	#Emit the chang turn signal so (mostly) Notebook can handle turn order operations
 	change_turn.emit(turn)
 	is_turn = turn
+	$TurnCircle.visible = turn
 
 ################################################################################
 
@@ -320,10 +328,13 @@ func get_interactables(reach):
 func _on_paper_select_tile(t : Tile):
 	#If the mvoing checkbox is sleected, set the character path to the selected tile
 	if(is_moving):
+		print(t)
 		cur_path = get_parent().get_node("Paper").map_path(self, t)
+		is_moving = false
+		$NotePad/Main/Move/Button.toggle_mode = false
 		start_movement()
 	#If some ability is selected, use the ability
-	if(selcted_ability != null):
+	if(selcted_ability != null and actions >= 1):
 		selcted_ability.use_ability_on_tile(t)
 
 # Function: player_selects_ability
@@ -366,3 +377,26 @@ func player_deselects_ability():
 #   -use_ability_on_char (Ability.gd)
 func dmg(amount):
 	health.dmg(amount)
+
+
+func _on_panel_container_gui_input(event):
+	if event is InputEventMouseButton :
+		if event.pressed && event.button_index == 1:
+			drag = true  # Start dragging when the mouse button is pressed
+			local_mouse_rel = get_global_mouse_position()  - $NotePad.global_position # Set the local mouse position for dragging
+		else :
+			drag = false  # Stop dragging when the mouse button is released
+
+
+func _on_name_tag_pressed():
+	$NotePad.position = Vector2(60, -32)
+	$NotePad.visible = true
+	pass # Replace with function body.
+
+
+func _on_paper_select_map_item(item : MapItem):
+	if(selcted_ability != null):
+		if(item.can_target() and item is Character):
+			char_use_ability(item)
+		if(item.can_target() and item is Interactiable):
+			char_interact(item)

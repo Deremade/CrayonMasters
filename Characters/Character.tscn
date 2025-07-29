@@ -1,34 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgp7v5wavpurg"]
+[gd_scene load_steps=6 format=3 uid="uid://bgp7v5wavpurg"]
 
 [ext_resource type="Texture2D" uid="uid://s7caqo2ckcrj" path="res://Characters/icon.svg" id="1_ikga5"]
 [ext_resource type="Script" path="res://Characters/Character.gd" id="2_47b8u"]
 [ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="3_har8s"]
 [ext_resource type="Texture2D" uid="uid://dr2hrvbgjh7sd" path="res://Characters/TargetCircle.png" id="4_6vhsm"]
+[ext_resource type="PackedScene" uid="uid://cnpim5uwk68vt" path="res://NotePad/note_pad.tscn" id="5_75hye"]
 
-[node name="Character" type="Sprite2D"]
+[node name="Character" type="Node2D"]
 position = Vector2(34, 32)
-scale = Vector2(0.472656, 0.445313)
-texture = ExtResource("1_ikga5")
 script = ExtResource("2_47b8u")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-self_modulate = Color(0, 0, 0, 1)
-clip_contents = false
-offset_left = -61.3554
-offset_top = 62.8771
-offset_right = 63.6446
-offset_bottom = 102.877
-theme_override_fonts/normal_font = ExtResource("3_har8s")
-theme_override_font_sizes/normal_font_size = 29
-text = "Character"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.49, 0.49)
+texture = ExtResource("1_ikga5")
 
 [node name="TargetCircle" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 0, 0, 1)
-scale = Vector2(2, 2)
 texture = ExtResource("4_6vhsm")
 
+[node name="TurnCircle" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.87451, 0, 1)
+texture = ExtResource("4_6vhsm")
+
+[node name="NameTag" type="Button" parent="."]
+offset_left = -45.0
+offset_top = 29.0
+offset_right = 49.0
+offset_bottom = 70.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("3_har8s")
+theme_override_font_sizes/font_size = 30
+action_mode = 0
+text = "Character"
+flat = true
+
+[node name="NotePad" parent="." instance=ExtResource("5_75hye")]
+visible = false
+offset_left = 34.0
+offset_top = -27.0
+offset_right = 328.0
+offset_bottom = 419.0
+
+[connection signal="change_turn" from="." to="NotePad" method="_on_character_change_turn"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="NameTag" to="." method="_on_name_tag_pressed"]
+[connection signal="gui_input" from="NotePad" to="." method="_on_panel_container_gui_input"]

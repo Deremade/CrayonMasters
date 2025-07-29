@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgukfjpxf3njp"]
+[gd_scene load_steps=7 format=3 uid="uid://dgukfjpxf3njp"]
 
 [ext_resource type="Script" path="res://NoteBook.gd" id="1_1kv4w"]
 [ext_resource type="FontFile" uid="uid://cbxwol3v7r4ak" path="res://DarksideoftheMourning.otf" id="2_xvywh"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dlct1aln2cn1y" path="res://Notebook/NotebookTag.png" id="4_pbvpb"]
 [ext_resource type="Texture2D" uid="uid://5t3pyinfh8ri" path="res://Notebook/openbook.png" id="5_144v3"]
 [ext_resource type="PackedScene" uid="uid://ci4p06lu8tqqi" path="res://Notebook/battlemap.tscn" id="6_kxyol"]
-[ext_resource type="Script" path="res://NoteCard/NoteCard.gd" id="7_b120d"]
-[ext_resource type="Texture2D" uid="uid://c18xofugrp4e8" path="res://Notebook/linedPaper.png" id="7_slu30"]
 
 [node name="NoteBook" type="Node2D"]
 script = ExtResource("1_1kv4w")
@@ -167,38 +165,6 @@ offset_bottom = 58.9684
 position = Vector2(-126.357, -0.968371)
 scale = Vector2(0.6, 0.6)
 
-[node name="NoteCard" type="Container" parent="Pages/Battle"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.035
-anchor_right = -0.035
-offset_left = 317.103
-offset_top = 317.032
-offset_right = 637.103
-offset_bottom = 507.032
-script = ExtResource("7_b120d")
-
-[node name="LinedPaper" type="Sprite2D" parent="Pages/Battle/NoteCard"]
-modulate = Color(1, 0.576471, 1, 1)
-position = Vector2(164.3, 91.8962)
-scale = Vector2(1.04187, 0.980248)
-texture = ExtResource("7_slu30")
-
-[node name="CharName" type="RichTextLabel" parent="Pages/Battle/NoteCard"]
-custom_minimum_size = Vector2(128, 32)
-layout_mode = 2
-text = "Character"
-scroll_active = false
-
-[node name="Health" type="RichTextLabel" parent="Pages/Battle/NoteCard"]
-custom_minimum_size = Vector2(128, 32)
-layout_mode = 2
-scroll_active = false
-
-[node name="TurnButton" type="Button" parent="Pages/Battle/NoteCard"]
-layout_mode = 2
-text = "End Turn"
-
 [node name="OpenBook" type="Sprite2D" parent="Pages"]
 z_index = -1
 position = Vector2(1, 218)
@@ -210,5 +176,3 @@ texture = ExtResource("5_144v3")
 [connection signal="pressed" from="Tab3/Tab3" to="." method="open_tab" binds= [2]]
 [connection signal="pressed" from="Tab4/Tab3" to="." method="open_tab" binds= [3]]
 [connection signal="pressed" from="Close/Close" to="." method="close_book"]
-[connection signal="select_map_item" from="Pages/Battle/BattleMap" to="Pages/Battle/NoteCard" method="_on_battle_map_select_map_item"]
-[connection signal="pressed" from="Pages/Battle/NoteCard/TurnButton" to="Pages/Battle/NoteCard" method="_on_turn_button_pressed"]
