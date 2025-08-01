@@ -1,6 +1,6 @@
-class_name Ability extends Resource
+class_name Ability
 # Class: Ability
-# Extends: Resource
+# Extends: nothing
 # Description: Holds all the information for actions preformed by characters
 #
 # Properties:
@@ -18,6 +18,11 @@ class_name Ability extends Resource
 
 var name : String
 var reach : int
+var range : int
+signal clear_ability
+signal use_ability
+var primary_tile :Tile
+var other_affected_tiles = []
 
 # Function: _init
 # Description: Constructor Function
@@ -33,9 +38,10 @@ var reach : int
 #
 # TODO:
 #   - Expand so a dictionary can be inserted to construct the ability
-func _init(set_ability_name : String, set_reach : int):
+func _init(set_ability_name : String, set_reach : int, set_range : int = 0):
 	name = set_ability_name
 	reach = set_reach
+	range = set_range
 
 # Function: use_ability_on_tile
 # Description: Abstract function that activates the effect of the ability
@@ -48,8 +54,27 @@ func _init(set_ability_name : String, set_reach : int):
 #
 # TODO: expand to include an effect_character() function that grabs charactr from Tile
 func use_ability_on_tile(_tile : Tile):
+	primary_tile = _tile
+	primary_tile.highlight_tile(Color.RED, clear_ability)
+	use_ability.emit()
+	if(range < 1): return
+	other_affected_tiles = _tile.get_tiles_in_range(range)
+	for a in other_affected_tiles:
+		a.highlight_tile(Color.RED, clear_ability)
+
+func execute_ability():
+	affect_tile(primary_tile)
+	print(other_affected_tiles)
+	for a in other_affected_tiles:
+		print(a.pos)
+		affect_tile(a)
+	clear_ability.emit()
 	pass
 
+func affect_tile(_tile : Tile):
+	var target_char = _tile.get_character()
+	if(not target_char == null):
+		use_ability_on_char(target_char)
 # Function: use_ability_on_char
 # Description: Abstract function that activates the effect of the ability
 # Parameters:
@@ -61,7 +86,6 @@ func use_ability_on_tile(_tile : Tile):
 #
 # TODO: expand to include an effect_character() function that grabs charactr from Tile
 func use_ability_on_char(_char : Character):
-	_char.dmg(3)
 	pass
 
 func _to_string():

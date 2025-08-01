@@ -23,6 +23,7 @@ var cost = 1
 var atlas
 signal change_type
 var pos : Vector2i
+var paper : Paper
 
 # Function: _init
 # Description: Constructor class for Tile
@@ -40,7 +41,8 @@ var pos : Vector2i
 # Modification Guidelines:
 #   - Check if th atlas of Ink matches
 #   - Make sure the change_tile signal is still connected
-func _init(set_pos : Vector2i, set_atlas : int, paper : Paper):
+func _init(set_pos : Vector2i, set_atlas : int, set_paper : Paper):
+	paper = set_paper
 	change_type.connect(Callable(paper, "change_tile"))
 	atlas = set_atlas
 	pos = set_pos
@@ -83,3 +85,36 @@ func change_tile(new_atlas):
 	if(atlas == 1):
 		cost = 2
 	change_type.emit(self)
+
+func get_character():
+	return paper.get_map_item_on_tile(self)
+
+func get_tiles_in_range(range: int) :
+	var positions: Array[Vector2i] = []
+	
+	# Ensure range is non-negative
+	if range < 0:
+		return []
+	
+	# Iterate through possible x and y offsets within the range
+	for x in range(-range, range + 1):
+		for y in range(-range, range + 1):
+			# Check if the position is within Manhattan distance
+			if abs(x) + abs(y) <= range:
+				positions.append(Vector2i(pos.x + x, pos.y + y))
+	positions.remove_at(positions.find(pos))
+	return paper.get_tiles(positions)
+
+func highlight_tile(set_color : Color, clear_signal : Signal):
+	var highlight = Highlight.new()
+	highlight.size = Vector2(64, 64)
+	set_color.a = min(set_color.a, 0.33)
+	highlight.color = set_color
+	highlight.position = (pos * 64)
+	paper.add_child(highlight)
+	clear_signal.connect(Callable(highlight, "clear_highlight"))
+
+class Highlight extends ColorRect:
+	
+	func clear_highlight():
+		queue_free()

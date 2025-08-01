@@ -44,7 +44,7 @@ func _ready():
 # Returns: void
 # Dependencies: none
 # Side Effects: emits the select_tile and select_map_item signals
-func _input(event):
+func _unhandled_input(event):
 	#Prevent erros by ensuring the mouse is in the right area
 	if(not get_parent().mouse_in):
 		return
@@ -55,13 +55,6 @@ func _input(event):
 		if(grid_position.x >= map_size.x) : return
 		if(grid_position.y >= map_size.y) : return
 		select_tile.emit(tiles[grid_position.x][grid_position.y])
-		#Iterate through clickable items and emit a signal if they are on the same tile
-		for item in get_parent().turns:
-			if(item.grid_pos == grid_position):
-				select_map_item.emit(item)
-		for item in get_parent().interactables:
-			if(item.grid_pos == grid_position):
-				select_map_item.emit(item)
 
 # Function: map_paths
 # Description: Middleman function to call Navigation find_paths and find_path functions
@@ -188,3 +181,24 @@ func global_to_grid(input : Vector2) -> Vector2i:
 	# Get the tile grid position
 	var tile_pos = local_to_map(local_click_pos)
 	return tile_pos
+
+func get_map_item_on_tile(t) -> MapItem:
+	var grid_position
+	if (t is Vector2):
+		grid_position = t
+	if (t is Tile):
+		grid_position = t.pos
+	#Iterate through clickable items and emit a signal if they are on the same tile
+	for item in get_parent().turns:
+		if(item.grid_pos == grid_position):
+			return item
+	for item in get_parent().interactables:
+		if(item.grid_pos == grid_position):
+			return item
+	return null
+
+func get_tiles(pos_arr):
+	var temp_tiles = []
+	for pos in pos_arr:
+		temp_tiles.append(tiles[pos.x][pos.y])
+	return temp_tiles

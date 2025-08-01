@@ -47,7 +47,26 @@ action_mode = 0
 text = "Use"
 flat = true
 
-[node name="Settings" type="Button" parent="Main"]
+[node name="Cancel" type="Button" parent="Main"]
+visible = false
+layout_mode = 0
+offset_left = 48.8889
+offset_top = 22.2222
+offset_right = 104.889
+offset_bottom = 52.2222
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("1_m2qrs")
+theme_override_font_sizes/font_size = 20
+action_mode = 0
+text = "Cancel"
+flat = true
+
+[node name="Confirm" type="Button" parent="Main"]
 visible = false
 layout_mode = 0
 offset_left = 47.7778
@@ -63,7 +82,7 @@ theme_override_colors/font_hover_pressed_color = Color(0, 0, 1, 1)
 theme_override_fonts/font = ExtResource("1_m2qrs")
 theme_override_font_sizes/font_size = 20
 action_mode = 0
-text = "Settings"
+text = "Confirm"
 flat = true
 
 [node name="Info" type="Button" parent="Main"]
@@ -112,5 +131,7 @@ icon = ExtResource("3_ch5w3")
 flat = true
 
 [connection signal="pressed" from="Main/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="Main/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Main/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="Main/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="Opening/Close_SN" to="." method="_on_close_sn_pressed"]

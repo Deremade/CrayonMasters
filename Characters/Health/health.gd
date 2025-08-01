@@ -38,7 +38,7 @@ signal change_health
 #Use the anatomy or not
 static var body : bool = false : set = swtich_body
 #Use it points or not
-static var hit_points : bool = false : set = switch_hp
+static var hit_points : bool = true : set = switch_hp
 
 
 func _init():
@@ -59,11 +59,14 @@ func _init():
 # Modification Guidelines:
 #   - 10 damage ~= max health
 func dmg(amount : int):
+	print("Take ", amount, " damage")
 	if body :
 		anatomy.injur(amount)
+		change_health.emit()
 		return
 	if hit_points :
 		hp -= amount
+		change_health.emit()
 		return
 	hearts -= ceil(float(amount)/3)
 	change_health.emit()
@@ -98,7 +101,7 @@ func _to_string():
 		return str(anatomy)
 	else:
 		if hit_points:
-			return "HP : " + str(hit_points) + "\\" + str(max_hp)
+			return "HP : " + str(hp) + "\\" + str(max_hp)
 		else :
 			var heart_dispaly = "Hearts: "
 			for i in hearts :

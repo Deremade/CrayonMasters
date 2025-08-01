@@ -68,10 +68,12 @@ var moves = 5
 var is_moving : bool = false
 #Actions
 var actions = 1
+var using_actions = 0
 var selcted_ability : Ability
 #Turns
 var is_turn : bool = false : set = set_turn
 signal change_turn
+signal change_path
 #Character info
 @export var char_name : String
 var health = Health.new()
@@ -118,6 +120,7 @@ func _process(_delta):
 func continue_path():
 	#If there ar moves left and a path to move on
 	if(moves > 0 && cur_path != []):
+		highlight_path()
 		#Change grid position to that class (see parent class)
 		grid_pos = cur_path[0]
 		#Remove the tile the character moved to from the path
@@ -199,17 +202,20 @@ func calc_tile_cost(tile : Tile):
 func set_turn(turn : bool):
 	#If the turn starts
 	if(turn):
+		highlight_path()
 		moves = 5
 		actions = 1
 	else : #If the turn ends
 		if(cur_path != []): #Finish unfinished movement
 			start_movement()
+		change_path.emit()
 		#Disable player control
-		is_moving = false 
+		is_moving = false
 		player_deselects_ability()
 	#Emit the chang turn signal so (mostly) Notebook can handle turn order operations
 	change_turn.emit(turn)
 	is_turn = turn
+	
 	$TurnCircle.visible = turn
 
 ################################################################################
@@ -219,25 +225,18 @@ func set_turn(turn : bool):
 # Function: char_use_ability
 # Description: Function used by the character to use an ability
 # Parameters:
-#   - target: Character - Charater whom th ability will be used on
+#   - _tile - Tile the ability will be used on
 # Returns: void
-# Dependencies: None (Character?)
+# Dependencies: Uses the use_ability_on_tile from Ability.gd
 # Side Effects: decrements actions
 # Example Usage:
 #   selected.char_use_ability(item)
-# Uses :
-#   -NoteCard.gd : _on_battle_map_select_map_item
 #
 # Modification Guidelines:
-#   - Takes Character as parameter
-#   - Only prints
-# TODO:
-#   - tgarget should be a tile not a character (will rquire modifying the Tile class)
-func char_use_ability(target : Character):
+#   - Takes Tile as parameter
+func char_use_ability(_tile : Tile):
 	if(actions > 0):
-		print(self, " uses ", selcted_ability, " on ", target)
-		selcted_ability.use_ability_on_char(target)
-		actions -= 1
+		selcted_ability.use_ability_on_tile(_tile)
 	else :
 		print("NO ACTIONS AVAILABLE")
 
@@ -270,6 +269,10 @@ func finish_ability(targets):
 #   - Most functionality ishandled in InteractableItem.gd
 func char_interact(item : Interactiable):
 	item.interact(self)
+
+func execute_ability():
+	selcted_ability.execute_ability()
+	actions -= 1
 
 ################################################################################
 
@@ -335,7 +338,7 @@ func _on_paper_select_tile(t : Tile):
 		start_movement()
 	#If some ability is selected, use the ability
 	if(selcted_ability != null and actions >= 1):
-		selcted_ability.use_ability_on_tile(t)
+		char_use_ability(t)
 
 # Function: player_selects_ability
 # Description: Selects ana bility for use
@@ -361,6 +364,8 @@ func player_selects_ability(a : Ability):
 #   -on_check in NoteCard.gd
 # Modification Guidelines:
 func player_deselects_ability():
+	if(selcted_ability == null): return
+	selcted_ability.clear_ability.emit()
 	selcted_ability = null
 	finish_ability(get_characters())
 
@@ -393,10 +398,7 @@ func _on_name_tag_pressed():
 	$NotePad.visible = true
 	pass # Replace with function body.
 
-
-func _on_paper_select_map_item(item : MapItem):
-	if(selcted_ability != null):
-		if(item.can_target() and item is Character):
-			char_use_ability(item)
-		if(item.can_target() and item is Interactiable):
-			char_interact(item)
+func highlight_path():
+	change_path.emit()
+	for t in get_parent().get_node("Paper").get_tiles(cur_path):
+		t.highlight_tile(Color.AQUAMARINE, change_path)

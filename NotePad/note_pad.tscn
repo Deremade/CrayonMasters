@@ -8,10 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cea2q82r0l022" path="res://NoteCard/Check.png" id="6_k2uu6"]
 
 [node name="NotePad" type="ColorRect"]
-offset_left = 44.0
-offset_top = -32.0
-offset_right = 338.0
-offset_bottom = 414.0
+offset_right = 294.0
+offset_bottom = 446.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_jr525")
 
@@ -149,6 +147,7 @@ offset_right = 178.0
 offset_bottom = 278.0
 
 [node name="Health" type="RichTextLabel" parent="Main"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 155.0
 offset_right = 111.0
@@ -171,6 +170,11 @@ offset_right = 113.0
 offset_bottom = 23.0
 icon = ExtResource("4_6ejnc")
 flat = true
+
+[node name="ProfilePic" type="Sprite2D" parent="Main"]
+position = Vector2(38.834, 106.742)
+scale = Vector2(5.12956, 5.02865)
+texture = ExtResource("6_k2uu6")
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 0
@@ -253,11 +257,6 @@ offset_bottom = 24.0
 scale = Vector2(-1, 1)
 icon = ExtResource("4_6ejnc")
 flat = true
-
-[node name="ProfilePic" type="Sprite2D" parent="."]
-position = Vector2(58.834, 109.742)
-scale = Vector2(5.12956, 5.02865)
-texture = ExtResource("6_k2uu6")
 
 [connection signal="pressed" from="Main/Endturn/Button" to="." method="_on_end_turn"]
 [connection signal="toggled" from="Main/Move/Button" to="." method="_on_button_toggled"]

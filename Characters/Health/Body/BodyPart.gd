@@ -64,7 +64,6 @@ func injur(amount):
 		health = round(health - amount)
 	#Otherwise add injury
 	else :
-		print(" ... ",amount * 0.3)
 		var mod_amount = min(ceil(amount * 0.3), 4)-1
 		injuries[mod_amount] += 1
 		clac_injury_level()

@@ -3,25 +3,16 @@ extends ColorRect
 var sticky_note = preload("res://NotePad/sticky_note.tscn")
 var item_index = 0
 var ability_index = 0
+signal select_new_ability
 
 func _ready():
 	$Main/CharName.text = get_parent().char_name
-	$Main/StickNote.set_ability(Ability.new("Sword", 1))
-	$Main/StickNote2.set_ability(Ability.new("Pistol", 10))
-	$Main/StickNote3.set_ability(Ability.new("FireBall", 10))
-	add_inventory(Ability.new("Knife", 1))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
-	add_ability(Ability.new("Fireball", 10))
+	$Main/StickNote.set_ability(AbilityFactory.Melee("Sword", 5, 2))
+	select_new_ability.connect(Callable($Main/StickNote, "using_new_ability"))
+	$Main/StickNote2.set_ability(AbilityFactory.Projectile("Bow", 6, 5, 5))
+	select_new_ability.connect(Callable($Main/StickNote2, "using_new_ability"))
+	$Main/StickNote3.set_ability(AbilityFactory.Blast("FireBall", 6, 2, 7, 5))
+	select_new_ability.connect(Callable($Main/StickNote3, "using_new_ability"))
 	
 	get_parent().health.change_health.connect(Callable(self, "update_health"))
 	update_health()
@@ -45,6 +36,7 @@ func add_inventory(item : Ability):
 	new_sticky.set_ability(item)
 	new_sticky.position = Vector2(0, 32)
 	new_sticky.select_option.connect(Callable(self, "select_option"))
+	select_new_ability.connect(Callable(new_sticky, "using_new_ability"))
 	$Inventory.add_child(new_sticky)
 
 func add_ability(item : Ability):
@@ -53,6 +45,7 @@ func add_ability(item : Ability):
 	new_sticky.position = Vector2(( (item_index % 3) * 100)-16, floor(item_index/3)*100+32)
 	item_index += 1
 	new_sticky.select_option.connect(Callable(self, "select_option"))
+	select_new_ability.connect(Callable(new_sticky, "using_new_ability"))
 	$Abiltiies.add_child(new_sticky)
 
 
@@ -82,8 +75,13 @@ func _on_back_pressed():
 
 func select_option(option : int, ability : Ability):
 	match option:
+		-1:
+			get_parent().player_deselects_ability()
 		0: 
+			select_new_ability.emit(ability)
 			get_parent().player_selects_ability(ability)
+		1:
+			get_parent().execute_ability()
 		_:
 			pass
 
