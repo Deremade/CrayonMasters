@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://bnip5n4jayc7n"]
+
+[ext_resource type="Script" path="res://CharInterface/Abilities/ability.gd" id="1_4hmvm"]
+
+[resource]
+script = ExtResource("1_4hmvm")
+name = null
+settings = {}

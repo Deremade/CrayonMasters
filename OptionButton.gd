@@ -26,8 +26,8 @@ func _on_item_selected(index: int):
 	# Emit the selected font (or handle as needed)
 	print("Selected font: ", font_names[index])
 	# You can emit a signal here if needed, e.g., signal font_changed(fonts[index])
-	var theme = load("res://Style.theme")
-	theme.set_default_font(fonts[index])
+	var changeTheme : Theme = load("res://Style.theme")
+	changeTheme.set_default_font(fonts[index])
 	
 
 # Optional: Signal to notify when a font is selected

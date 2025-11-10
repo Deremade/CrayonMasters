@@ -1,0 +1,182 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbr3aquufrloy"]
+
+[ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Style.theme" id="1_h530i"]
+[ext_resource type="Texture2D" uid="uid://65yrru8fd73m" path="res://CharInterface/ComfyUI_temp_ssdri_00008_.png" id="2_do52p"]
+[ext_resource type="Script" path="res://CharInterface/note_pad.gd" id="2_xniic"]
+[ext_resource type="Texture2D" uid="uid://dmdvf8n6rq4nv" path="res://CharImgs/ComfyUI_00095_.png" id="3_5bxcr"]
+[ext_resource type="PackedScene" uid="uid://d1fq38vfyxxrd" path="res://CharInterface/StickyNote/sticky_note.tscn" id="5_q0swv"]
+
+[node name="NotePad" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_h530i")
+script = ExtResource("2_xniic")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 297.0
+offset_bottom = 458.0
+
+[node name="TabBar" type="TabBar" parent="."]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 29.0
+offset_right = 751.0
+offset_bottom = 69.0
+rotation = 1.5708
+tab_count = 6
+tab_0/title = "Main"
+tab_1/title = "Abilities"
+tab_2/title = "Inventory"
+tab_3/title = "Mind"
+tab_4/title = "Log"
+tab_5/title = "X"
+
+[node name="NotePad Paper" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_do52p")
+centered = false
+
+[node name="Main" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProfPic" type="Sprite2D" parent="Main"]
+position = Vector2(78, 166)
+texture = ExtResource("3_5bxcr")
+
+[node name="Stats" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 89.0
+offset_right = 294.0
+offset_bottom = 203.0
+text = "Strength :
+Reflexes :
+Charisma :
+Inteligance:"
+
+[node name="Health" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 207.0
+offset_right = 294.0
+offset_bottom = 240.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+text = "Health :"
+
+[node name="Info" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 247.0
+offset_right = 127.0
+offset_bottom = 383.0
+text = "Story Relevant
+Information"
+
+[node name="Status" type="RichTextLabel" parent="Main"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 248.0
+offset_right = 294.0
+offset_bottom = 283.0
+bbcode_enabled = true
+text = "[b]Status:[/b]"
+
+[node name="Abilities" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TestAbility1" type="Button" parent="Abilities"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 89.0
+offset_right = 72.0
+offset_bottom = 129.0
+text = "Fireball"
+
+[node name="TestAbility2" type="Button" parent="Abilities"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 123.0
+offset_right = 72.0
+offset_bottom = 163.0
+text = "Lightning"
+
+[node name="Inventory" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StickyNote" parent="Inventory" instance=ExtResource("5_q0swv")]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 89.0
+offset_right = 14.0
+offset_bottom = 89.0
+
+[node name="Mind" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mood" type="HSlider" parent="Mind"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 102.0
+offset_right = 280.0
+offset_bottom = 118.0
+value = 50.0
+
+[node name="MoodLabel" type="RichTextLabel" parent="Mind"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 98.0
+offset_right = 79.0
+offset_bottom = 126.0
+text = "Mood
+"
+
+[node name="Button" type="Button" parent="Mind"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 140.0
+offset_right = 291.0
+offset_bottom = 180.0
+text = "Relationships"
+
+[node name="Button2" type="Button" parent="Mind"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 140.0
+offset_right = 176.0
+offset_bottom = 180.0
+text = "Goals
+"
+
+[node name="Log" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharacterName" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 46.0
+offset_right = 291.0
+offset_bottom = 98.0
+bbcode_enabled = true
+text = "[b]Character Name [/b]"
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="tab_clicked" from="TabBar" to="." method="_on_tab_bar_tab_clicked"]
+[connection signal="using_ability" from="Inventory/StickyNote" to="." method="_on_sticky_note_using_ability"]

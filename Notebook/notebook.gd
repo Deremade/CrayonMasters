@@ -7,7 +7,6 @@ func _ready():
 	$Open.visible = false
 
 func _on_tab_bar_tab_selected(tab: int):
-	print(tab)
 	if tab == 0 :
 		$Cover.visible = true
 		$Open.visible = false
@@ -18,4 +17,5 @@ func _on_tab_bar_tab_selected(tab: int):
 		$Open/Genre.visible = (tab == 1)
 		$Open/Stories.visible = (tab == 2)
 		$Open/Adventure.visible = (tab == 3)
-		$Open/Situation.visible = (tab == 4)
+		$Open/Event.visible = (tab == 4)
+

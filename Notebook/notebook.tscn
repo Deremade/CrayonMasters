@@ -1,15 +1,74 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp0sgnr86odux"]
+[gd_scene load_steps=26 format=3 uid="uid://dp0sgnr86odux"]
 
 [ext_resource type="Script" path="res://Notebook/notebook.gd" id="1_py6r4"]
 [ext_resource type="Texture2D" uid="uid://bwsir678seyir" path="res://Notebook/NoteBookCover.png" id="1_xgxxg"]
 [ext_resource type="Texture2D" uid="uid://cnu7gcgas3uf7" path="res://Notebook/NotebookTag.png" id="2_6njlh"]
 [ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Style.theme" id="3_c6vb4"]
 [ext_resource type="Texture2D" uid="uid://j3klxbe2xvoi" path="res://Notebook/NotbookPages.png" id="4_4bj7y"]
+[ext_resource type="PackedScene" uid="uid://4grkxkq3xg3c" path="res://CharInterface/CharacterDrawing.tscn" id="6_247mm"]
+[ext_resource type="Resource" uid="uid://5fxbds71pbne" path="res://TestScaffolds/TestCharacters/Knight.tres" id="7_ku68a"]
+[ext_resource type="Script" path="res://CharInterface/Character.gd" id="8_0ise7"]
+[ext_resource type="Script" path="res://CharInterface/Abilities/Damage_Ability.gd" id="8_2ilpp"]
+[ext_resource type="Texture2D" uid="uid://dhtg4drxrxir2" path="res://ItemImgs/ComfyUI_temp_bthta_00016_.png" id="9_2jfw8"]
+[ext_resource type="Texture2D" uid="uid://pt4b0dijkmq6" path="res://CharImgs/ComfyUI_temp_oedab_00009_.png" id="10_q1mkm"]
+[ext_resource type="Script" path="res://Notebook/Battle.gd" id="11_0y3bh"]
+[ext_resource type="Texture2D" uid="uid://d2f24qnmcs0yq" path="res://ItemImgs/ComfyUI_temp_ryfff_00001_.png" id="13_288sp"]
+[ext_resource type="Script" path="res://CharInterface/Status Effects/poison.gd" id="13_ciunf"]
+[ext_resource type="Texture2D" uid="uid://dp8o3gu64vdfl" path="res://CharImgs/ComfyUI_temp_stpoq_00008_.png" id="14_a1jv6"]
+[ext_resource type="Script" path="res://CharInterface/Abilities/RayGun.gd" id="16_7ocj8"]
+[ext_resource type="Texture2D" uid="uid://dbmoutlyicv0f" path="res://CharImgs/ComfyUI_00104_.png" id="17_casi7"]
+[ext_resource type="Texture2D" uid="uid://dayef288y03dl" path="res://ItemImgs/ComfyUI_temp_bthta_00001_.png" id="17_v6pqj"]
+
+[sub_resource type="Resource" id="Resource_wlxqq"]
+script = ExtResource("8_2ilpp")
+dmg = 10
+add_effects = Array[Resource("res://CharInterface/Status Effects/status_effect.gd")]([])
+name = "Pistol"
+texture = ExtResource("9_2jfw8")
+
+[sub_resource type="Resource" id="Resource_lb4q6"]
+script = ExtResource("8_0ise7")
+char_name = "Cowboy"
+profile_pic = ExtResource("10_q1mkm")
+base_oritentation = true
+inventory = Array[Resource("res://CharInterface/Abilities/ability.gd")]([SubResource("Resource_wlxqq")])
+
+[sub_resource type="Resource" id="Resource_sm8hb"]
+script = ExtResource("13_ciunf")
+dmg = 2
+stacks = 3
+
+[sub_resource type="Resource" id="Resource_5fc77"]
+script = ExtResource("8_2ilpp")
+dmg = 3
+add_effects = Array[Resource("res://CharInterface/Status Effects/status_effect.gd")]([SubResource("Resource_sm8hb")])
+name = "Shirakin"
+texture = ExtResource("13_288sp")
+
+[sub_resource type="Resource" id="Resource_i1g6w"]
+script = ExtResource("8_0ise7")
+char_name = "Ninja"
+profile_pic = ExtResource("14_a1jv6")
+base_oritentation = true
+inventory = Array[Resource("res://CharInterface/Abilities/ability.gd")]([SubResource("Resource_5fc77")])
+
+[sub_resource type="Resource" id="Resource_kfvni"]
+script = ExtResource("16_7ocj8")
+name = "Raygun"
+texture = ExtResource("17_v6pqj")
+
+[sub_resource type="Resource" id="Resource_rkwh2"]
+script = ExtResource("8_0ise7")
+char_name = "Spaceman"
+profile_pic = ExtResource("17_casi7")
+base_oritentation = false
+inventory = Array[Resource("res://CharInterface/Abilities/ability.gd")]([SubResource("Resource_kfvni")])
 
 [node name="Notebook" type="Node2D"]
 script = ExtResource("1_py6r4")
 
 [node name="Cover" type="Node2D" parent="."]
+visible = false
 z_index = 1
 
 [node name="NoteBookCover" type="Sprite2D" parent="Cover"]
@@ -32,7 +91,6 @@ bbcode_enabled = true
 text = "[b]Setting Name"
 
 [node name="Open" type="Node2D" parent="."]
-visible = false
 
 [node name="NotebookPages" type="Sprite2D" parent="Open"]
 position = Vector2(4, 331)
@@ -103,14 +161,33 @@ theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "[b]Adventure Name[/b]"
 
-[node name="Situation" type="Node2D" parent="Open"]
-visible = false
+[node name="Event" type="Node2D" parent="Open"]
 position = Vector2(-477, 6)
 
-[node name="TileMap" type="TileMap" parent="Open/Situation"]
-cell_quadrant_size = 64
-format = 2
-layer_0/z_index = 1
+[node name="Battle" type="Control" parent="Open/Event"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_0y3bh")
+
+[node name="CharacterDrawing" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
+position = Vector2(258, 97)
+character = ExtResource("7_ku68a")
+facing_right = true
+
+[node name="CharacterDrawing2" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
+position = Vector2(705, 146)
+character = SubResource("Resource_lb4q6")
+
+[node name="CharacterDrawing3" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
+position = Vector2(259, 297)
+character = SubResource("Resource_i1g6w")
+facing_right = true
+
+[node name="CharacterDrawing4" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
+position = Vector2(709, 312)
+character = SubResource("Resource_rkwh2")
 
 [node name="TabBar" type="TabBar" parent="."]
 offset_left = 556.0
@@ -123,6 +200,18 @@ tab_0/title = "X"
 tab_1/title = "Genre"
 tab_2/title = "Stories"
 tab_3/title = "Adventure"
-tab_4/title = "Situation"
+tab_4/title = "Event"
 
+[connection signal="player_targeting" from="Open/Event/Battle" to="Open/Event/Battle/CharacterDrawing" method="_on_battle_player_targeting"]
+[connection signal="player_targeting" from="Open/Event/Battle" to="Open/Event/Battle/CharacterDrawing2" method="_on_battle_player_targeting"]
+[connection signal="player_targeting" from="Open/Event/Battle" to="Open/Event/Battle/CharacterDrawing3" method="_on_battle_player_targeting"]
+[connection signal="player_targeting" from="Open/Event/Battle" to="Open/Event/Battle/CharacterDrawing4" method="_on_battle_player_targeting"]
+[connection signal="target" from="Open/Event/Battle/CharacterDrawing" to="Open/Event/Battle" method="_on_char_target"]
+[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing" to="Open/Event/Battle" method="_on_character_using_ability"]
+[connection signal="target" from="Open/Event/Battle/CharacterDrawing2" to="Open/Event/Battle" method="_on_char_target"]
+[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing2" to="Open/Event/Battle" method="_on_character_using_ability"]
+[connection signal="target" from="Open/Event/Battle/CharacterDrawing3" to="Open/Event/Battle" method="_on_char_target"]
+[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing3" to="Open/Event/Battle" method="_on_character_using_ability"]
+[connection signal="target" from="Open/Event/Battle/CharacterDrawing4" to="Open/Event/Battle" method="_on_char_target"]
+[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing4" to="Open/Event/Battle" method="_on_character_using_ability"]
 [connection signal="tab_selected" from="TabBar" to="." method="_on_tab_bar_tab_selected"]
