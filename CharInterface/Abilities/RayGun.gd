@@ -5,7 +5,6 @@ func _init():
 				"Power" = [0, 10]}
 	
 func use(_actor : Character, target : Character):
-	print(changes.get("Setting"))
 	match changes.get("Setting"):
 		"Stun" : target.effects.append(statEffect.Stun.new())
 		"Heat Ray" : target.take_damage(changes.get("Power"))

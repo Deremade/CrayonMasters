@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbr3aquufrloy"]
+[gd_scene load_steps=7 format=3 uid="uid://dbr3aquufrloy"]
 
-[ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Style.theme" id="1_h530i"]
+[ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="1_h530i"]
 [ext_resource type="Texture2D" uid="uid://65yrru8fd73m" path="res://CharInterface/ComfyUI_temp_ssdri_00008_.png" id="2_do52p"]
 [ext_resource type="Script" path="res://CharInterface/note_pad.gd" id="2_xniic"]
-[ext_resource type="Texture2D" uid="uid://dmdvf8n6rq4nv" path="res://CharImgs/ComfyUI_00095_.png" id="3_5bxcr"]
-[ext_resource type="PackedScene" uid="uid://d1fq38vfyxxrd" path="res://CharInterface/StickyNote/sticky_note.tscn" id="5_q0swv"]
+[ext_resource type="Texture2D" uid="uid://c1qygs0gv5vns" path="res://Sprites/CharImgs/StickFigures/Head.png" id="4_2dmim"]
+[ext_resource type="Texture2D" uid="uid://ffos46t6huje" path="res://Sprites/CharImgs/StickFigures/NinjaHat.png" id="5_nbrpu"]
+[ext_resource type="PackedScene" uid="uid://d1fq38vfyxxrd" path="res://GameInterface/StickyNote/sticky_note.tscn" id="5_q0swv"]
 
 [node name="NotePad" type="Control"]
 layout_mode = 3
@@ -44,10 +45,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ProfPic" type="Sprite2D" parent="Main"]
-position = Vector2(78, 166)
-texture = ExtResource("3_5bxcr")
-
 [node name="Stats" type="RichTextLabel" parent="Main"]
 layout_mode = 0
 offset_left = 145.0
@@ -86,27 +83,50 @@ offset_bottom = 283.0
 bbcode_enabled = true
 text = "[b]Status:[/b]"
 
+[node name="Head" type="Sprite2D" parent="Main"]
+position = Vector2(72, 118)
+texture = ExtResource("4_2dmim")
+
+[node name="Torso" type="Line2D" parent="Main/Head"]
+points = PackedVector2Array(-2, 30, -2, 60)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RightArm" type="Line2D" parent="Main/Head"]
+points = PackedVector2Array(-2, 30, 25, 45)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="LeftArm" type="Line2D" parent="Main/Head"]
+points = PackedVector2Array(-2, 30, -22, 43)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RightLeg" type="Line2D" parent="Main/Head"]
+points = PackedVector2Array(14, 89, -2, 60)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="LeftLeg" type="Line2D" parent="Main/Head"]
+points = PackedVector2Array(-18, 87, -2, 60)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Hat" type="Sprite2D" parent="Main/Head"]
+texture = ExtResource("5_nbrpu")
+
 [node name="Abilities" type="Control" parent="."]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TestAbility1" type="Button" parent="Abilities"]
-layout_mode = 0
-offset_left = 19.0
+[node name="StickyNote" parent="Abilities" instance=ExtResource("5_q0swv")]
+layout_mode = 1
+offset_left = 14.0
 offset_top = 89.0
-offset_right = 72.0
-offset_bottom = 129.0
-text = "Fireball"
-
-[node name="TestAbility2" type="Button" parent="Abilities"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 123.0
-offset_right = 72.0
-offset_bottom = 163.0
-text = "Lightning"
+offset_right = 14.0
+offset_bottom = 89.0
 
 [node name="Inventory" type="Control" parent="."]
 visible = false
@@ -179,4 +199,5 @@ text = "[b]Character Name [/b]"
 
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="tab_clicked" from="TabBar" to="." method="_on_tab_bar_tab_clicked"]
+[connection signal="using_ability" from="Abilities/StickyNote" to="." method="_on_sticky_note_using_ability"]
 [connection signal="using_ability" from="Inventory/StickyNote" to="." method="_on_sticky_note_using_ability"]

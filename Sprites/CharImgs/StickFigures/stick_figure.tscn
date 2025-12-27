@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbnb0msyf2psj"]
+
+[ext_resource type="Texture2D" uid="uid://c1qygs0gv5vns" path="res://Sprites/CharImgs/StickFigures/Head.png" id="1_fa407"]
+
+[node name="Stick Figure" type="Node2D"]
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(9, 8)
+texture = ExtResource("1_fa407")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(9, 16, 9, 28)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RightArm" type="Line2D" parent="."]
+points = PackedVector2Array(9, 16, 19, 24)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="LeftArm" type="Line2D" parent="."]
+points = PackedVector2Array(9, 16, 0, 23)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="LeftArm2" type="Line2D" parent="."]
+position = Vector2(0, 11)
+points = PackedVector2Array(9, 16, 4.95811, 19.1437, 0, 23)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RightArm2" type="Line2D" parent="."]
+position = Vector2(0, 11)
+points = PackedVector2Array(9, 16, 19, 24)
+width = 2.0
+default_color = Color(0, 0, 0, 1)

@@ -35,10 +35,22 @@ func _on_name_tag_pressed():
 
 func set_char(set_character : Character):
 	character = set_character
+	set_character.signal_damage.connect(Callable(self, "update_health"))
+	$Main/Head/Hat.texture = set_character.hat_pic
 	$CharacterName.text = "[b]"+character.char_name+"[/b]"
-	$Main/ProfPic.texture = character.profile_pic
-	$Inventory/StickyNote.set_ability(set_character.inventory[0])
+	if(len(set_character.inventory) > 0):
+		$Inventory/StickyNote.set_ability(set_character.inventory[0])
+	else :
+		$Inventory/StickyNote.queue_free()
+	if(len(set_character.abiltiies) > 0):
+		$Abilities/StickyNote.set_ability(set_character.abiltiies[0])
+	else :
+		$Abilities/StickyNote.queue_free()
+	update_health(0)
 
 
 func _on_sticky_note_using_ability(toggle, ability):
 	using_ability.emit(toggle, ability)
+
+func update_health(dmg):
+	$Main/Health.text = "Health : "+str(character.health)

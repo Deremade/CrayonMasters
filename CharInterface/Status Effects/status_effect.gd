@@ -4,6 +4,9 @@ class_name statEffect extends Resource
 func start_turn_effect(charactr : Character):
 	pass
 
+func start_turn_graphic(char_drawing : CharacterDrawing):
+	await char_drawing.status_message("Status effect")
+
 func end_turn_effect():
 	stacks -= 1;
 	pass
@@ -11,13 +14,8 @@ func end_turn_effect():
 class Stun extends statEffect:
 	
 	func start_turn_effect(charactr : Character):
-		print(charactr.char_name, " is stunned")
-		charactr.actions = 0
-
-class Frozen extends statEffect:
+		pass
 	
-	func _init(init_stacks : int):
-		stacks = init_stacks
-
-	func start_turn_effect(charactr : Character):
-		charactr.actions = 0
+	func start_turn_graphic(char_drawing : CharacterDrawing):
+		char_drawing.actions = 0
+		await char_drawing.status_message("Stunned")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://su4msku0t7qb"]
+
+[ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="1_yl0nf"]
+[ext_resource type="Script" path="res://Stylization/Err_Sticker.gd" id="2_eklu8"]
+[ext_resource type="Script" path="res://Stylization/WrittenText.gd" id="3_3rxi4"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = -12.0
+offset_right = 180.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yl0nf")
+script = ExtResource("2_eklu8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -91.0
+offset_top = -24.0
+offset_right = 91.0
+offset_bottom = 23.0
+color = Color(0.870588, 0.243137, 0.329412, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -15.0
+offset_right = 85.0
+offset_bottom = 17.0
+
+[node name="WrittenText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -15.0
+offset_right = 78.0
+offset_bottom = 39.0
+bbcode_enabled = true
+text = "Not Enough Coinage For this Purpose"
+fit_content = true
+scroll_active = false
+script = ExtResource("3_3rxi4")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="finish_writting" from="WrittenText" to="." method="_on_written_text_finish_writting"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
