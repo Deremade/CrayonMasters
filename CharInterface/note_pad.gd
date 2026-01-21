@@ -6,6 +6,9 @@ var drag = false  # Flag to indicate if dragging is in progress
 var character : Character = null
 signal using_ability(toggle : bool, ability : Ability)
 
+##Sticky Notes
+var sticky_notes = preload("res://GameInterface/StickyNote/sticky_note.tscn")
+
 func _process(_delta):
 	if(drag):
 		global_position = get_global_mouse_position()-local_mouse_rel
@@ -37,15 +40,28 @@ func set_char(set_character : Character):
 	character = set_character
 	set_character.signal_damage.connect(Callable(self, "update_health"))
 	$Main/Head/Hat.texture = set_character.hat_pic
+	$Main/Head/Hat.modulate = set_character.hat_color
 	$CharacterName.text = "[b]"+character.char_name+"[/b]"
-	if(len(set_character.inventory) > 0):
-		$Inventory/StickyNote.set_ability(set_character.inventory[0])
-	else :
-		$Inventory/StickyNote.queue_free()
-	if(len(set_character.abiltiies) > 0):
-		$Abilities/StickyNote.set_ability(set_character.abiltiies[0])
-	else :
-		$Abilities/StickyNote.queue_free()
+	for c in $Inventory.get_children():
+		$Inventory.remove_child(c)
+	var item_count = 0
+	for item in set_character.inventory:
+		var sticky_new = sticky_notes.instantiate()
+		sticky_new.set_ability(item)
+		sticky_new.position = Vector2(14 + ((item_count % 2)*150), 89 + (floor(item_count / 2))*150)
+		$Inventory.add_child(sticky_new)
+		item_count += 1
+		sticky_new.using_ability.connect(Callable(self, "_on_sticky_note_using_ability"))
+	for c in $Abilities.get_children():
+		$Abilities.remove_child(c)
+	var ability_count = 0
+	for ability in set_character.abiltiies:
+		var sticky_new = sticky_notes.instantiate()
+		sticky_new.set_ability(ability)
+		sticky_new.position = Vector2(14 + ((ability_count % 2)*150), 89 + (floor(ability_count / 2))*150)
+		$Abilities.add_child(sticky_new)
+		ability_count += 1
+		sticky_new.using_ability.connect(Callable(self, "_on_sticky_note_using_ability"))
 	update_health(0)
 
 

@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://bnip5n4jayc7n"]
+[gd_resource type="Resource" script_class="RayGun" load_steps=3 format=3 uid="uid://bnip5n4jayc7n"]
 
-[ext_resource type="Script" path="res://CharInterface/Abilities/ability.gd" id="1_4hmvm"]
+[ext_resource type="Script" uid="uid://bbaltlocrk3vq" path="res://Characters/Abilities/RayGun.gd" id="1_35nx6"]
+[ext_resource type="Texture2D" uid="uid://dayef288y03dl" path="res://Sprites/ItemImgs/ComfyUI_temp_bthta_00001_.png" id="2_35nx6"]
 
 [resource]
-script = ExtResource("1_4hmvm")
-name = null
-settings = {}
+resource_name = "RayGun"
+script = ExtResource("1_35nx6")
+name = "Raygun"
+texture = ExtResource("2_35nx6")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://c1vy6dxgjlte6"]
+
+[ext_resource type="Script" uid="uid://bf4y6fkya8uml" path="res://Characters/Abilities/ability.gd" id="1_as0vs"]
+[ext_resource type="Script" uid="uid://b0irce70upihf" path="res://CharInterface/Character.gd" id="2_81i46"]
+[ext_resource type="Texture2D" uid="uid://dwfloahwujg18" path="res://Sprites/CharImgs/StickFigures/AtompunkHelm.png" id="2_f042a"]
+[ext_resource type="Script" uid="uid://bbaltlocrk3vq" path="res://Characters/Abilities/RayGun.gd" id="3_afm8k"]
+[ext_resource type="Texture2D" uid="uid://dayef288y03dl" path="res://Sprites/ItemImgs/ComfyUI_temp_bthta_00001_.png" id="4_afm8k"]
+
+[sub_resource type="Resource" id="Resource_xywmw"]
+script = ExtResource("3_afm8k")
+name = "RayGun"
+texture = ExtResource("4_afm8k")
+metadata/_custom_type_script = "uid://bbaltlocrk3vq"
+
+[resource]
+script = ExtResource("2_81i46")
+char_name = "Spaceman"
+hat_pic = ExtResource("2_f042a")
+hat_color = Color(0.27339968, 0.6299494, 0.6277844, 1)
+inventory = Array[ExtResource("1_as0vs")]([SubResource("Resource_xywmw")])
+metadata/_custom_type_script = "uid://b0irce70upihf"

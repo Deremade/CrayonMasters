@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbr3aquufrloy"]
+[gd_scene load_steps=6 format=3 uid="uid://dbr3aquufrloy"]
 
 [ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="1_h530i"]
 [ext_resource type="Texture2D" uid="uid://65yrru8fd73m" path="res://CharInterface/ComfyUI_temp_ssdri_00008_.png" id="2_do52p"]
-[ext_resource type="Script" path="res://CharInterface/note_pad.gd" id="2_xniic"]
+[ext_resource type="Script" uid="uid://d3kswyubyfnkc" path="res://CharInterface/note_pad.gd" id="2_xniic"]
 [ext_resource type="Texture2D" uid="uid://c1qygs0gv5vns" path="res://Sprites/CharImgs/StickFigures/Head.png" id="4_2dmim"]
 [ext_resource type="Texture2D" uid="uid://ffos46t6huje" path="res://Sprites/CharImgs/StickFigures/NinjaHat.png" id="5_nbrpu"]
-[ext_resource type="PackedScene" uid="uid://d1fq38vfyxxrd" path="res://GameInterface/StickyNote/sticky_note.tscn" id="5_q0swv"]
 
 [node name="NotePad" type="Control"]
 layout_mode = 3
@@ -27,6 +26,7 @@ offset_top = 29.0
 offset_right = 751.0
 offset_bottom = 69.0
 rotation = 1.5708
+current_tab = 0
 tab_count = 6
 tab_0/title = "Main"
 tab_1/title = "Abilities"
@@ -121,26 +121,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StickyNote" parent="Abilities" instance=ExtResource("5_q0swv")]
-layout_mode = 1
-offset_left = 14.0
-offset_top = 89.0
-offset_right = 14.0
-offset_bottom = 89.0
-
 [node name="Inventory" type="Control" parent="."]
 visible = false
-layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="StickyNote" parent="Inventory" instance=ExtResource("5_q0swv")]
-layout_mode = 1
-offset_left = 14.0
-offset_top = 89.0
-offset_right = 14.0
-offset_bottom = 89.0
 
 [node name="Mind" type="Control" parent="."]
 visible = false
@@ -199,5 +184,3 @@ text = "[b]Character Name [/b]"
 
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="tab_clicked" from="TabBar" to="." method="_on_tab_bar_tab_clicked"]
-[connection signal="using_ability" from="Abilities/StickyNote" to="." method="_on_sticky_note_using_ability"]
-[connection signal="using_ability" from="Inventory/StickyNote" to="." method="_on_sticky_note_using_ability"]

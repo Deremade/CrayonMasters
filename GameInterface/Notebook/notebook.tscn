@@ -1,93 +1,16 @@
-[gd_scene load_steps=30 format=3 uid="uid://dp0sgnr86odux"]
+[gd_scene load_steps=12 format=3 uid="uid://dp0sgnr86odux"]
 
-[ext_resource type="Script" path="res://GameInterface/Notebook/notebook.gd" id="1_py6r4"]
+[ext_resource type="Script" uid="uid://celwxeujlq3ek" path="res://GameInterface/Notebook/notebook.gd" id="1_py6r4"]
 [ext_resource type="Texture2D" uid="uid://bwsir678seyir" path="res://GameInterface/Notebook/NoteBookCover.png" id="1_xgxxg"]
 [ext_resource type="Texture2D" uid="uid://cnu7gcgas3uf7" path="res://GameInterface/Notebook/NotebookTag.png" id="2_6njlh"]
 [ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="3_c6vb4"]
 [ext_resource type="Texture2D" uid="uid://j3klxbe2xvoi" path="res://GameInterface/Notebook/NotbookPages.png" id="4_4bj7y"]
-[ext_resource type="PackedScene" uid="uid://4grkxkq3xg3c" path="res://CharInterface/CharacterDrawing.tscn" id="6_247mm"]
-[ext_resource type="Script" path="res://CharInterface/Character.gd" id="8_0ise7"]
-[ext_resource type="Script" path="res://CharInterface/Abilities/Damage_Ability.gd" id="8_2ilpp"]
-[ext_resource type="Texture2D" uid="uid://ffos46t6huje" path="res://Sprites/CharImgs/StickFigures/NinjaHat.png" id="8_gemp1"]
-[ext_resource type="Texture2D" uid="uid://dvtyyo8eje31j" path="res://Sprites/CharImgs/StickFigures/GearHat.png" id="8_sob2p"]
-[ext_resource type="Script" path="res://GameInterface/Notebook/Battle.gd" id="11_0y3bh"]
-[ext_resource type="Texture2D" uid="uid://da6hn4mp4fc50" path="res://Sprites/ItemImgs/ComfyUI_temp_bthta_00026_.png" id="11_ht0vi"]
-[ext_resource type="Texture2D" uid="uid://d2f24qnmcs0yq" path="res://Sprites/ItemImgs/ComfyUI_temp_ryfff_00001_.png" id="13_288sp"]
-[ext_resource type="Script" path="res://CharInterface/Status Effects/poison.gd" id="13_ciunf"]
-[ext_resource type="Texture2D" uid="uid://cntj85gf1sccj" path="res://Sprites/CharImgs/StickFigures/CoyboyHat.png" id="13_xsw8m"]
-[ext_resource type="Texture2D" uid="uid://dhtg4drxrxir2" path="res://Sprites/ItemImgs/ComfyUI_temp_bthta_00016_.png" id="14_phfoo"]
-[ext_resource type="Texture2D" uid="uid://cf57flt6iru8q" path="res://Sprites/CharImgs/StickFigures/WizHat.png" id="17_2bh4o"]
-[ext_resource type="Script" path="res://CharInterface/Status Effects/freeze.gd" id="19_ftbnr"]
-[ext_resource type="Texture2D" uid="uid://ca0yen00ayxh4" path="res://Sprites/ItemImgs/ComfyUI_temp_adpkh_00001_.png" id="20_73ocn"]
-
-[sub_resource type="Resource" id="Resource_5fc77"]
-script = ExtResource("8_2ilpp")
-dmg = 5
-add_effects = Array[Resource("res://CharInterface/Status Effects/status_effect.gd")]([])
-name = "GearBomb"
-texture = ExtResource("11_ht0vi")
-
-[sub_resource type="Resource" id="Resource_i1g6w"]
-script = ExtResource("8_0ise7")
-char_name = "SteamHead"
-hat_pic = ExtResource("8_sob2p")
-base_oritentation = true
-inventory = Array[Resource("res://CharInterface/Abilities/ability.gd")]([SubResource("Resource_5fc77")])
-abiltiies = Array[Resource("res://CharInterface/Abilities/ability.gd")]([])
-
-[sub_resource type="Resource" id="Resource_8et2b"]
-script = ExtResource("8_2ilpp")
-dmg = 5
-add_effects = Array[Resource("res://CharInterface/Status Effects/status_effect.gd")]([])
-name = "Pistol"
-texture = ExtResource("14_phfoo")
-
-[sub_resource type="Resource" id="Resource_rkwh2"]
-script = ExtResource("8_0ise7")
-char_name = "Cowboy"
-hat_pic = ExtResource("13_xsw8m")
-base_oritentation = false
-inventory = Array[Resource("res://CharInterface/Abilities/ability.gd")]([SubResource("Resource_8et2b")])
-abiltiies = Array[Resource("res://CharInterface/Abilities/ability.gd")]([])
-
-[sub_resource type="Resource" id="Resource_t4hrq"]
-script = ExtResource("19_ftbnr")
-stacks = 3
-
-[sub_resource type="Resource" id="Resource_83ncb"]
-script = ExtResource("8_2ilpp")
-dmg = 0
-add_effects = Array[Resource("res://CharInterface/Status Effects/status_effect.gd")]([SubResource("Resource_t4hrq")])
-name = "Freeze"
-texture = ExtResource("20_73ocn")
-
-[sub_resource type="Resource" id="Resource_ftr5l"]
-script = ExtResource("8_0ise7")
-char_name = "Wizard"
-hat_pic = ExtResource("17_2bh4o")
-base_oritentation = false
-inventory = Array[Resource("res://CharInterface/Abilities/ability.gd")]([])
-abiltiies = Array[Resource("res://CharInterface/Abilities/ability.gd")]([SubResource("Resource_83ncb")])
-
-[sub_resource type="Resource" id="Resource_2kgvq"]
-script = ExtResource("13_ciunf")
-dmg = 2
-stacks = 3
-
-[sub_resource type="Resource" id="Resource_w3wao"]
-script = ExtResource("8_2ilpp")
-dmg = 4
-add_effects = Array[Resource("res://CharInterface/Status Effects/status_effect.gd")]([SubResource("Resource_2kgvq")])
-name = "Shirikan"
-texture = ExtResource("13_288sp")
-
-[sub_resource type="Resource" id="Resource_3x31q"]
-script = ExtResource("8_0ise7")
-char_name = "Ninja"
-hat_pic = ExtResource("8_gemp1")
-base_oritentation = false
-inventory = Array[Resource("res://CharInterface/Abilities/ability.gd")]([SubResource("Resource_w3wao")])
-abiltiies = Array[Resource("res://CharInterface/Abilities/ability.gd")]([])
+[ext_resource type="Script" uid="uid://cyqkygp3tlao" path="res://GameInterface/Notebook/make_new_saga.gd" id="6_ljjad"]
+[ext_resource type="Script" uid="uid://pxvxa5dwvw8o" path="res://GameInterface/Notebook/make_new_adventure.gd" id="7_rqyjk"]
+[ext_resource type="Script" uid="uid://dmsmgcr203n35" path="res://GameInterface/Notebook/adventureSettings.gd" id="8_7kxsu"]
+[ext_resource type="Script" uid="uid://djkek3jejiq43" path="res://GameInterface/Notebook/adventure_characters.gd" id="8_he3iw"]
+[ext_resource type="Script" uid="uid://b482cmabvdfdx" path="res://GameInterface/Notebook/adventure_events.gd" id="10_xxmm6"]
+[ext_resource type="Script" uid="uid://b3g6drsrwfdl" path="res://GameInterface/Notebook/Battle.gd" id="11_0y3bh"]
 
 [node name="Notebook" type="Node2D"]
 script = ExtResource("1_py6r4")
@@ -152,21 +75,94 @@ But whatever it is, it will be cool"
 visible = false
 position = Vector2(-477, 6)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Open/Stories"]
-offset_left = 62.0
-offset_top = 1.0
-offset_right = 479.0
-offset_bottom = 68.0
+[node name="SelectAdventure" type="Control" parent="Open/Stories"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sagas" type="Control" parent="Open/Stories/SelectAdventure"]
+anchors_preset = 0
+offset_left = 67.0
+offset_top = 51.0
+offset_right = 107.0
+offset_bottom = 91.0
+theme = ExtResource("3_c6vb4")
+script = ExtResource("6_ljjad")
+
+[node name="TextEdit" type="TextEdit" parent="Open/Stories/SelectAdventure/Sagas"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 4.0
+offset_right = 343.0
+offset_bottom = 42.0
+
+[node name="Button" type="Button" parent="Open/Stories/SelectAdventure/Sagas"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 11.0
+offset_right = 86.0
+offset_bottom = 42.0
+text = "New Saga"
+
+[node name="List" type="VBoxContainer" parent="Open/Stories/SelectAdventure/Sagas"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 51.0
+offset_right = 379.0
+offset_bottom = 360.0
+theme = ExtResource("3_c6vb4")
+
+[node name="Title" type="RichTextLabel" parent="Open/Stories/SelectAdventure/Sagas"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -50.0
+offset_right = 412.0
+offset_bottom = 17.0
 theme = ExtResource("3_c6vb4")
 theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "[b]Sagas[/b]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Open/Stories"]
-offset_left = 489.0
-offset_top = -3.0
-offset_right = 906.0
-offset_bottom = 64.0
+[node name="Adventures" type="Control" parent="Open/Stories/SelectAdventure"]
+visible = false
+anchors_preset = 0
+offset_left = 492.0
+offset_top = 62.0
+offset_right = 532.0
+offset_bottom = 102.0
+theme = ExtResource("3_c6vb4")
+script = ExtResource("7_rqyjk")
+
+[node name="TextEdit" type="TextEdit" parent="Open/Stories/SelectAdventure/Adventures"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 4.0
+offset_right = 343.0
+offset_bottom = 42.0
+
+[node name="Button" type="Button" parent="Open/Stories/SelectAdventure/Adventures"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 11.0
+offset_right = 86.0
+offset_bottom = 42.0
+text = "New Adventure"
+
+[node name="List" type="VBoxContainer" parent="Open/Stories/SelectAdventure/Adventures"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 51.0
+offset_right = 379.0
+offset_bottom = 360.0
+theme = ExtResource("3_c6vb4")
+
+[node name="Title" type="RichTextLabel" parent="Open/Stories/SelectAdventure/Adventures"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -65.0
+offset_right = 414.0
+offset_bottom = 2.0
 theme = ExtResource("3_c6vb4")
 theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
@@ -175,16 +171,100 @@ text = "[b]Adventures[/b]"
 [node name="Adventure" type="Node2D" parent="Open"]
 visible = false
 position = Vector2(-477, 6)
+script = ExtResource("8_7kxsu")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Open/Adventure"]
+[node name="Adventure Name" type="RichTextLabel" parent="Open/Adventure"]
 offset_left = 62.0
 offset_top = 1.0
 offset_right = 899.0
-offset_bottom = 68.0
+offset_bottom = 67.0
 theme = ExtResource("3_c6vb4")
 theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "[b]Adventure Name[/b]"
+
+[node name="Characters" type="Control" parent="Open/Adventure"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 62.0
+offset_top = 54.0
+offset_right = 478.0
+offset_bottom = 647.0
+theme = ExtResource("3_c6vb4")
+script = ExtResource("8_he3iw")
+
+[node name="CharactersLabel" type="RichTextLabel" parent="Open/Adventure/Characters"]
+layout_mode = 0
+offset_top = -7.0
+offset_right = 210.0
+offset_bottom = 24.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[b]Characters[/b]"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Open/Adventure/Characters"]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 407.0
+offset_bottom = 546.0
+
+[node name="TextEdit" type="TextEdit" parent="Open/Adventure/Characters"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 10.0
+offset_right = 351.0
+offset_bottom = 48.0
+
+[node name="Button" type="Button" parent="Open/Adventure/Characters"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 22.0
+offset_right = 94.0
+offset_bottom = 53.0
+text = "New Character"
+
+[node name="Events" type="Control" parent="Open/Adventure"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 488.0
+offset_top = 48.0
+offset_right = 891.0
+offset_bottom = 600.0
+script = ExtResource("10_xxmm6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Open/Adventure/Events"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 0
+offset_top = 60.0
+offset_right = 418.0
+offset_bottom = 555.0
+theme = ExtResource("3_c6vb4")
+
+[node name="CharactersLabel" type="RichTextLabel" parent="Open/Adventure/Events"]
+layout_mode = 0
+offset_top = -7.0
+offset_right = 210.0
+offset_bottom = 24.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[b]Events[/b]"
+
+[node name="TextEdit" type="TextEdit" parent="Open/Adventure/Events"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 10.0
+offset_right = 351.0
+offset_bottom = 48.0
+
+[node name="Button" type="Button" parent="Open/Adventure/Events"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 22.0
+offset_right = 94.0
+offset_bottom = 53.0
+text = "New Event"
 
 [node name="Event" type="Node2D" parent="Open"]
 position = Vector2(-477, 6)
@@ -192,25 +272,18 @@ position = Vector2(-477, 6)
 [node name="Battle" type="Control" parent="Open/Event"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("11_0y3bh")
 
-[node name="CharacterDrawing3" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
-position = Vector2(259, 297)
-character = SubResource("Resource_i1g6w")
-
-[node name="CharacterDrawing4" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
-position = Vector2(703, 376)
-character = SubResource("Resource_rkwh2")
-
-[node name="CharacterDrawing5" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
-position = Vector2(268, 496)
-character = SubResource("Resource_ftr5l")
-
-[node name="CharacterDrawing6" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
-position = Vector2(707, 176)
-character = SubResource("Resource_3x31q")
+[node name="TextEdit" type="RichTextLabel" parent="Open/Event"]
+visible = false
+offset_left = 114.0
+offset_top = 174.0
+offset_right = 368.0
+offset_bottom = 271.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 60
+bbcode_enabled = true
+text = "[b]Finished[/b]"
 
 [node name="TabBar" type="TabBar" parent="."]
 offset_left = 556.0
@@ -218,22 +291,18 @@ offset_top = 5.0
 offset_right = 968.0
 offset_bottom = 70.0
 rotation = 1.5708
+current_tab = 0
 tab_count = 5
 tab_0/title = "X"
 tab_1/title = "Genre"
 tab_2/title = "Stories"
 tab_3/title = "Adventure"
+tab_3/disabled = true
 tab_4/title = "Event"
+tab_4/disabled = true
 
-[connection signal="player_targeting" from="Open/Event/Battle" to="Open/Event/Battle/CharacterDrawing3" method="_on_battle_player_targeting"]
-[connection signal="player_targeting" from="Open/Event/Battle" to="Open/Event/Battle/CharacterDrawing4" method="_on_battle_player_targeting"]
-[connection signal="player_targeting" from="Open/Event/Battle" to="Open/Event/Battle/CharacterDrawing5" method="_on_battle_player_targeting"]
-[connection signal="target" from="Open/Event/Battle/CharacterDrawing3" to="Open/Event/Battle" method="_on_char_target"]
-[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing3" to="Open/Event/Battle" method="_on_character_using_ability"]
-[connection signal="target" from="Open/Event/Battle/CharacterDrawing4" to="Open/Event/Battle" method="_on_char_target"]
-[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing4" to="Open/Event/Battle" method="_on_character_using_ability"]
-[connection signal="target" from="Open/Event/Battle/CharacterDrawing5" to="Open/Event/Battle" method="_on_char_target"]
-[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing5" to="Open/Event/Battle" method="_on_character_using_ability"]
-[connection signal="target" from="Open/Event/Battle/CharacterDrawing6" to="Open/Event/Battle" method="_on_char_target"]
-[connection signal="using_ability" from="Open/Event/Battle/CharacterDrawing6" to="Open/Event/Battle" method="_on_character_using_ability"]
+[connection signal="pressed" from="Open/Stories/SelectAdventure/Sagas/Button" to="Open/Stories/SelectAdventure/Sagas" method="_on_button_pressed"]
+[connection signal="pressed" from="Open/Stories/SelectAdventure/Adventures/Button" to="Open/Stories/SelectAdventure/Adventures" method="_on_button_pressed"]
+[connection signal="pressed" from="Open/Adventure/Characters/Button" to="Open/Adventure/Characters" method="_on_button_pressed"]
+[connection signal="pressed" from="Open/Adventure/Events/Button" to="Open/Adventure/Events" method="_on_button_pressed"]
 [connection signal="tab_selected" from="TabBar" to="." method="_on_tab_bar_tab_selected"]

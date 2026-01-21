@@ -4,6 +4,7 @@ class_name CharacterDrawing extends Node2D
 @export var team : int
 @export var NPC : bool
 var actions = 1
+signal char_death
 
 signal using_ability(toggled : bool, ability : Ability, char : Character)
 signal target(char : Character)
@@ -11,6 +12,7 @@ signal target(char : Character)
 
 func _ready():
 	$Head/Hat.texture = character.hat_pic
+	$Head/Hat.modulate = character.hat_color
 	$NameTag.text = character.char_name
 	$NotePad.set_char(character)
 	character.signal_damage.connect(Callable(self, "check_hp"))
@@ -41,6 +43,7 @@ func change_turn(is_now_turn : bool):
 
 func check_hp(dmg):
 	if character.health <= 0:
+		char_death.emit(self)
 		queue_free()
 		if($Turn_Indicator.visible):
 			character.end_turn()
@@ -63,6 +66,9 @@ func end_turn():
 		if (e.stacks == 0):
 			character.effects.remove_at(character.effects.find(e))
 
-func use_ability(ability : Ability, target: Character):
-	ability.use(character, target)
+func use_ability(ability : Ability, ability_target: Character):
+	ability.use(character, ability_target)
 	actions -= 1
+
+func _to_string() -> String:
+	return str(character)

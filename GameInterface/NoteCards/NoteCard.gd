@@ -1,6 +1,7 @@
 class_name NoteCard extends Control
 
 var changes = {}
+signal made_changes
 
 func _ready():
 	pass
@@ -33,7 +34,10 @@ func add_dropdown(label : String, options):
 	draw_label.custom_minimum_size = Vector2(128, 32)
 	var new_dropdownbox : OptionButton = OptionButton.new()
 	for option in options:
-		new_dropdownbox.add_item(option)
+		if option is ImageTexture :
+			new_dropdownbox.add_icon_item(option, "")
+		else :
+			new_dropdownbox.add_item(option)
 	h_box.add_child(draw_label)
 	h_box.add_child(new_dropdownbox)
 	new_dropdownbox.item_selected.connect(func(index):
@@ -51,8 +55,29 @@ func add_checkbox(label : String):
 	$ScrollContainer/Content.add_child(new_checkbox)
 	changes[label] = false
 
+func add_color_picker(label):
+	var h_box = HBoxContainer.new()
+	var draw_label = RichTextLabel.new()
+	draw_label.text = label
+	draw_label.custom_minimum_size = Vector2(128, 32)
+	var new_color_picker = ColorPickerButton.new()
+	new_color_picker.text = "   --     --"
+	new_color_picker.color_changed.connect(func(color):
+		make_change(label, color)
+		)
+	h_box.add_child(draw_label)
+	h_box.add_child(new_color_picker)
+	changes[label] = new_color_picker.color
+	$ScrollContainer/Content.add_child(h_box)
+	pass
+
 func _on_close_pressed():
 	self.visible = false
 
 func make_change(label, change):
 	changes[label] = change
+	made_changes.emit(changes)
+
+func clear_card():
+	for c in $ScrollContainer/Content.get_children():
+		$ScrollContainer/Content.remove_child(c)

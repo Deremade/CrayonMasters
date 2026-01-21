@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://4grkxkq3xg3c"]
+[gd_scene load_steps=7 format=3 uid="uid://4grkxkq3xg3c"]
 
-[ext_resource type="Script" path="res://CharInterface/Character_Drawing.gd" id="1_lkbow"]
-[ext_resource type="Texture2D" uid="uid://dmdvf8n6rq4nv" path="res://Sprites/CharImgs/ComfyUI_00095_.png" id="2_uy2l4"]
+[ext_resource type="Script" uid="uid://7ywdjqt0nbit" path="res://CharInterface/Character_Drawing.gd" id="1_lkbow"]
 [ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="3_vg5wn"]
 [ext_resource type="PackedScene" uid="uid://dbr3aquufrloy" path="res://CharInterface/note_pad.tscn" id="4_53hp0"]
-[ext_resource type="Script" path="res://Stylization/WrittenText.gd" id="5_6xxuk"]
+[ext_resource type="Script" uid="uid://cdmsi6fsij5l0" path="res://Stylization/WrittenText.gd" id="5_6xxuk"]
 [ext_resource type="Texture2D" uid="uid://c1qygs0gv5vns" path="res://Sprites/CharImgs/StickFigures/Head.png" id="6_ouou5"]
 [ext_resource type="Texture2D" uid="uid://ffos46t6huje" path="res://Sprites/CharImgs/StickFigures/NinjaHat.png" id="7_l283h"]
 
@@ -18,10 +17,6 @@ offset_top = 23.0
 offset_right = 47.0
 offset_bottom = 84.0
 color = Color(1, 0.329412, 0, 0.337255)
-
-[node name="Pic" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_uy2l4")
 
 [node name="NameTag" type="Button" parent="."]
 offset_left = -40.0
@@ -39,8 +34,8 @@ offset_right = -45.0
 offset_bottom = -5.0
 theme = ExtResource("3_vg5wn")
 theme_override_colors/font_color = Color(0.956863, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 text = "-(-)-"
 
 [node name="NotePad" parent="." instance=ExtResource("4_53hp0")]

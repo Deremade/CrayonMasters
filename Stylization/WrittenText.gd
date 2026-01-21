@@ -3,12 +3,12 @@ var is_writting = false
 var queue = []
 signal finish_writting
 
-func type_text(set_text: String, speed: float = 0.05):
+func type_text(st_text: String, speed: float = 0.05):
 	if(is_writting):
 		queue.append(set_text)
 		return
 	is_writting = true
-	text = set_text  # Set full text (with BBCode)
+	text = st_text  # Set full text (with BBCode)
 	visible_characters = 0
 
 	var total_chars = get_total_character_count()

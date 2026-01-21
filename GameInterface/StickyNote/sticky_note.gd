@@ -13,6 +13,7 @@ func set_ability(sability : Ability):
 	$Img.scale.y = 64.0/ability.texture.get_width()
 	$Img.texture = ability.texture
 	var note_Card : NoteCard = $Button/NoteCard
+	$Button.connect_changes_signal(self, "update_settings")
 	for setting in ability.settings:
 		var value = ability.settings[setting]
 		if(value is bool):
@@ -28,6 +29,8 @@ func set_ability(sability : Ability):
 
 
 func _on_check_box_toggled(button_pressed):
-	ability.changes = $Button.get_notecard_changes()
 	using_ability.emit(button_pressed, ability)
-	
+
+func update_settings(setings):
+	ability.changes = setings
+	pass

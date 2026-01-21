@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddwgdxfe6syfw"]
 
 [ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="1_adsy1"]
-[ext_resource type="Script" path="res://GameInterface/NoteCards/NoteCardButton.gd" id="2_wal1o"]
+[ext_resource type="Script" uid="uid://lf21k522mc1a" path="res://GameInterface/NoteCards/NoteCardButton.gd" id="2_wal1o"]
 [ext_resource type="PackedScene" uid="uid://csgbhty5qn68m" path="res://GameInterface/NoteCards/note_card.tscn" id="3_q62ae"]
 
 [node name="Button" type="Button"]

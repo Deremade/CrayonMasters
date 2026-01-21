@@ -1,7 +1,7 @@
 class_name statEffect extends Resource
 @export var stacks : int = 1
 
-func start_turn_effect(charactr : Character):
+func start_turn_effect(_charactr : Character):
 	pass
 
 func start_turn_graphic(char_drawing : CharacterDrawing):
@@ -13,7 +13,7 @@ func end_turn_effect():
 
 class Stun extends statEffect:
 	
-	func start_turn_effect(charactr : Character):
+	func start_turn_effect(_charactr : Character):
 		pass
 	
 	func start_turn_graphic(char_drawing : CharacterDrawing):

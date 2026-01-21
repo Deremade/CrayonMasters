@@ -28,9 +28,3 @@ func _input(event):
 	if(!hovered): return
 	if event is InputEventMouseButton and event.pressed:
 		selected = !selected
-		$New_Mouse.visible = selected
-		if(selected):
-			var new_cursor : Texture= load("res://FTMenuPeice.png")
-			Input.set_custom_mouse_cursor(new_cursor)
-		else :
-			Input.set_custom_mouse_cursor(null)
