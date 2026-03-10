@@ -1,41 +1,34 @@
 class_name Event extends Resource
 
+#Characters involved in the event
 var chars_involed : Array[Character]
-var sides : Array[int]
 var event_name
+#Convienient access to the Adventure functions and properties [Mostly used to get characters]
 var adventure : Adventure
 var open : bool = true
-var log : Array[String] = []
-signal finish_event
+#Record Keeeping function, Will allow the event to be read by player
+var eventLog : Array[String] = []
+@warning_ignore("unused_signal")
+signal finish_event #Used to activate the viewable function in event_display.gd
 
-func _init(set_name, set_adventure):
-	event_name = set_name
+func _init(set_event_name, set_adventure):
+	event_name = set_event_name
 	adventure = set_adventure
 
-func incorperate_settings(settings : Dictionary):
-	chars_involed.clear()
-	sides.clear()
-	for c : Character in adventure.Characters:
-		if settings.has(c.char_name + " : Team "):
-			if settings[c.char_name + " : Team "] != 0:
-				chars_involed.append(c)
-				sides.append(int(settings[c.char_name + " : Team "]))
-	print(chars_involed)
-	print(sides)
+#Incoperates a dictionary of settings to build the event
+#Only defined in subclasses since Cambat vs NonCombat drstically change implementation
+func incorperate_settings(_settings : Dictionary):
+	pass
 
-func build_event(eventNode : Node):
-	for c in eventNode.get_children():
-		eventNode.remove_child(c)
-	print(len(chars_involed))
-	for i in len(chars_involed):
-		eventNode.add_character(chars_involed[i], sides[i])
-	eventNode.cur_turn = eventNode.get_child(0)
-	eventNode.cur_event = self
+func build_event(_eventNode : Node):
+	pass
 
+#Adds a sub event to the log dor record keeping
 func log_sub_event(sub_event : String):
-	log.append(sub_event)
+	eventLog.append(sub_event)
 
+#Modifies a notecard to display the log
 func notecard_log(card : NoteCard):
 	card.clear_card()
-	for l in log:
+	for l in eventLog:
 		card.add_text(l)

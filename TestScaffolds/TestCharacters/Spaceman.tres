@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://c1vy6dxgjlte6"]
 
 [ext_resource type="Script" uid="uid://bf4y6fkya8uml" path="res://Characters/Abilities/ability.gd" id="1_as0vs"]
-[ext_resource type="Script" uid="uid://b0irce70upihf" path="res://CharInterface/Character.gd" id="2_81i46"]
+[ext_resource type="Script" uid="uid://b0irce70upihf" path="res://Characters/CharInterface/Character.gd" id="2_81i46"]
 [ext_resource type="Texture2D" uid="uid://dwfloahwujg18" path="res://Sprites/CharImgs/StickFigures/AtompunkHelm.png" id="2_f042a"]
 [ext_resource type="Script" uid="uid://bbaltlocrk3vq" path="res://Characters/Abilities/RayGun.gd" id="3_afm8k"]
 [ext_resource type="Texture2D" uid="uid://dayef288y03dl" path="res://Sprites/ItemImgs/ComfyUI_temp_bthta_00001_.png" id="4_afm8k"]

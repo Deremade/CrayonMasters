@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbr3aquufrloy"]
 
 [ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="1_h530i"]
-[ext_resource type="Texture2D" uid="uid://65yrru8fd73m" path="res://CharInterface/ComfyUI_temp_ssdri_00008_.png" id="2_do52p"]
-[ext_resource type="Script" uid="uid://d3kswyubyfnkc" path="res://CharInterface/note_pad.gd" id="2_xniic"]
+[ext_resource type="Texture2D" uid="uid://65yrru8fd73m" path="res://Characters/CharInterface/ComfyUI_temp_ssdri_00008_.png" id="2_do52p"]
+[ext_resource type="Script" uid="uid://d3kswyubyfnkc" path="res://Characters/CharInterface/note_pad.gd" id="2_xniic"]
 [ext_resource type="Texture2D" uid="uid://c1qygs0gv5vns" path="res://Sprites/CharImgs/StickFigures/Head.png" id="4_2dmim"]
 [ext_resource type="Texture2D" uid="uid://ffos46t6huje" path="res://Sprites/CharImgs/StickFigures/NinjaHat.png" id="5_nbrpu"]
 

@@ -2,31 +2,27 @@ class_name Adventure extends Resource
 
 var genre : Genre
 var name : String
+#List of events [Currently only suited for chronological stories]
+#Currently unused
 var events : Array[Event] = []
-var select_button : Button
 
 func _init(set_name : String, set_genre : Genre) -> void:
 	name = set_name
 	genre = set_genre
 
-func get_button():
-	if select_button == null:
-		select_button = Button.new()
-		select_button.text = name
-		select_button.pressed.connect(Callable(self, "test_button"))
-	return select_button
-
-func test_button():
-	pass
-
+#A list of all characters, emits a signal when updated
+#signal connects to event_display.gd : update_characters
+#					adventureSettings.gd : update_characters
+#Signal connects on adventure_events.gd: _on_button_pressed
+#					adventureSettings.gd : set_adventure
 var Characters : Array[Character] = []:
 	set(chars):
 		Characters = chars
 		characters_updated.emit(Characters)
-		print("Update Charcaters")
 signal characters_updated
 
+#Adds a character to the Adventure
+#Called on adventure_characters.gd:_on_button_pressed
 func add_character(char):
 	Characters.append(char)
 	characters_updated.emit(Characters)
-	print("Add")

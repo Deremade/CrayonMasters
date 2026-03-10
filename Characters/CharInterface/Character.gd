@@ -12,18 +12,23 @@ var strength = 3
 var reflexes = 3
 var charisma = 3
 var intelligance = 3
+#Signal that emits when the character takes dmaage
+#Connects to note_pad.gd : update_health
+#Connects to Character_Drawing : check_hp
 signal signal_damage()
+#Health has a setter function that emits the signal_damage signal
 var health = 20 :
 	set(hp):
 		var dmg = health-hp
 		health = hp
 		signal_damage.emit(dmg)
-
+#The current effects affecting the character [see effect.gd]
 var effects = []
-
+#Function to take damage
 func take_damage(amount):
 	health -= amount
-
+#Builds a character from a dictionary of settings
+#Inovked in adventure_characters.gd : _on_button_pressed
 func build_from_settings(settings):
 	hat_pic = settings["Hat"]
 	hat_color = settings["Hat Color"]
