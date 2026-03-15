@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1fq38vfyxxrd"]
+
+[ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="1_m41ol"]
+[ext_resource type="Script" uid="uid://ddqi0bq3w1t7y" path="res://GameInterface/StickyNote/sticky_note.gd" id="2_u8sva"]
+[ext_resource type="PackedScene" uid="uid://ddwgdxfe6syfw" path="res://GameInterface/NoteCards/notecard_button.tscn" id="3_vl60c"]
+
+[node name="StickyNote" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m41ol")
+script = ExtResource("2_u8sva")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+color = Color(0.792157, 0.266667, 0.815686, 1)
+
+[node name="Img" type="Sprite2D" parent="."]
+position = Vector2(34, 70)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[b]Item Name[/b]"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 102.0
+offset_right = 128.0
+offset_bottom = 129.0
+text = "Using"
+
+[node name="Button" parent="." instance=ExtResource("3_vl60c")]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 48.0
+offset_right = 125.0
+offset_bottom = 75.0
+text = "Settings"
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

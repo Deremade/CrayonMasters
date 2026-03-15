@@ -1,0 +1,137 @@
+[gd_scene load_steps=9 format=3 uid="uid://dp0sgnr86odux"]
+
+[ext_resource type="Script" uid="uid://celwxeujlq3ek" path="res://GameInterface/Notebook/notebook.gd" id="1_py6r4"]
+[ext_resource type="Texture2D" uid="uid://bwsir678seyir" path="res://GameInterface/Notebook/NoteBookCover.png" id="1_xgxxg"]
+[ext_resource type="Texture2D" uid="uid://cnu7gcgas3uf7" path="res://GameInterface/Notebook/NotebookTag.png" id="2_6njlh"]
+[ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="3_c6vb4"]
+[ext_resource type="Texture2D" uid="uid://j3klxbe2xvoi" path="res://GameInterface/Notebook/NotbookPages.png" id="4_4bj7y"]
+[ext_resource type="PackedScene" uid="uid://4grkxkq3xg3c" path="res://CharInterface/CharacterDrawing.tscn" id="6_247mm"]
+[ext_resource type="Resource" uid="uid://5fxbds71pbne" path="res://TestScaffolds/TestCharacters/Knight.tres" id="8_rqyjk"]
+[ext_resource type="Script" uid="uid://b3g6drsrwfdl" path="res://GameInterface/Notebook/Battle.gd" id="11_0y3bh"]
+
+[node name="Notebook" type="Node2D"]
+script = ExtResource("1_py6r4")
+
+[node name="Cover" type="Node2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="NoteBookCover" type="Sprite2D" parent="Cover"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_xgxxg")
+centered = false
+
+[node name="NotebookTag" type="Sprite2D" parent="Cover"]
+position = Vector2(282, 182)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_6njlh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Cover/NotebookTag"]
+offset_left = -68.0
+offset_top = -31.0
+offset_right = 64.0
+offset_bottom = 25.0
+theme = ExtResource("3_c6vb4")
+bbcode_enabled = true
+text = "[b]Setting Name"
+
+[node name="Open" type="Node2D" parent="."]
+
+[node name="NotebookPages" type="Sprite2D" parent="Open"]
+position = Vector2(4, 331)
+scale = Vector2(2.23384, 2.40605)
+texture = ExtResource("4_4bj7y")
+
+[node name="Genre" type="Node2D" parent="Open"]
+visible = false
+position = Vector2(-477, 6)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Open/Genre"]
+offset_left = 62.0
+offset_top = 1.0
+offset_right = 479.0
+offset_bottom = 68.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[b]Setting Name[/b]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Open/Genre"]
+offset_left = 62.0
+offset_top = 55.0
+offset_right = 473.0
+offset_bottom = 225.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "Basic Description of the Setting here
+Perhaps it's a western, Sci-fi, or Fantrasy
+But whatever it is, it will be cool"
+
+[node name="Stories" type="Node2D" parent="Open"]
+visible = false
+position = Vector2(-477, 6)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Open/Stories"]
+offset_left = 62.0
+offset_top = 1.0
+offset_right = 479.0
+offset_bottom = 68.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[b]Sagas[/b]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Open/Stories"]
+offset_left = 489.0
+offset_top = -3.0
+offset_right = 906.0
+offset_bottom = 64.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[b]Adventures[/b]"
+
+[node name="Adventure" type="Node2D" parent="Open"]
+visible = false
+position = Vector2(-477, 6)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Open/Adventure"]
+offset_left = 62.0
+offset_top = 1.0
+offset_right = 899.0
+offset_bottom = 68.0
+theme = ExtResource("3_c6vb4")
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[b]Adventure Name[/b]"
+
+[node name="Event" type="Node2D" parent="Open"]
+position = Vector2(-477, 6)
+
+[node name="Battle" type="Control" parent="Open/Event"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_0y3bh")
+
+[node name="CharacterDrawing" parent="Open/Event/Battle" instance=ExtResource("6_247mm")]
+position = Vector2(224, 207)
+character = ExtResource("8_rqyjk")
+
+[node name="TabBar" type="TabBar" parent="."]
+offset_left = 556.0
+offset_top = 5.0
+offset_right = 968.0
+offset_bottom = 70.0
+rotation = 1.5708
+current_tab = 0
+tab_count = 5
+tab_0/title = "X"
+tab_1/title = "Genre"
+tab_2/title = "Stories"
+tab_3/title = "Adventure"
+tab_4/title = "Event"
+
+[connection signal="tab_selected" from="TabBar" to="." method="_on_tab_bar_tab_selected"]

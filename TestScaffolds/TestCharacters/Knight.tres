@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://5fxbds71pbne"]
+
+[ext_resource type="Script" uid="uid://bpby6fpxfhe5r" path="res://Characters/Abilities/Damage_Ability.gd" id="1_lbo0x"]
+[ext_resource type="Script" uid="uid://b0irce70upihf" path="res://Characters/CharInterface/Character.gd" id="1_qchag"]
+[ext_resource type="Script" uid="uid://bf4y6fkya8uml" path="res://Characters/Abilities/ability.gd" id="1_uk4qx"]
+[ext_resource type="Texture2D" uid="uid://dle104bv5gdlk" path="res://Sprites/ItemImgs/ComfyUI_temp_umxzz_00003_.png" id="2_5g768"]
+[ext_resource type="Script" uid="uid://10xbgxexaah0" path="res://Characters/CharInterface/Status Effects/status_effect.gd" id="2_hsk64"]
+[ext_resource type="Texture2D" uid="uid://tqe488eq1mwm" path="res://Sprites/CharImgs/StickFigures/KnightHelm.png" id="2_pqrmv"]
+
+[sub_resource type="Resource" id="Resource_88e3h"]
+script = ExtResource("1_lbo0x")
+dmg = 5
+name = "Sword"
+texture = ExtResource("2_5g768")
+
+[resource]
+resource_name = "Knight"
+script = ExtResource("1_qchag")
+char_name = "Knight"
+hat_pic = ExtResource("2_pqrmv")
+hat_color = Color(0.23537213, 0.36598596, 0.35849684, 1)
+inventory = Array[ExtResource("1_uk4qx")]([SubResource("Resource_88e3h")])

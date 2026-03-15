@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://lof1qlxbf6s4"]
+
+[ext_resource type="Theme" uid="uid://btukbdjjykot2" path="res://Stylization/Style.theme" id="1_omkf7"]
+[ext_resource type="Script" path="res://Stylization/WrittenText.gd" id="2_3oym5"]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+offset_right = 207.0
+offset_bottom = 89.0
+theme = ExtResource("1_omkf7")
+bbcode_enabled = true
+script = ExtResource("2_3oym5")
